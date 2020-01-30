@@ -1,25 +1,24 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-<div class="card-container">
-<mat-card class="card">
-  <mat-toolbar  >Admin</mat-toolbar>
-  <div class="example-container text-center">
-  <mat-form-field>
-    <input matInput placeholder="User Name">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Password">
-  </mat-form-field>
-
+      <div class="card-container">
+        <mat-card class="card">
+          <mat-toolbar>Admin Login</mat-toolbar>
+          <form [formGroup] = "adminFormGroup" (ngSubmit)="onSubmit(formDirective)" #formDirective = "ngForm">
+            <div class="example-container text-center" >
+              <mat-form-field>
+                <input matInput placeholder="User Name" formControlName="userName" />
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Password" formControlName="userPassword" />
+              </mat-form-field>
+            </div>
+            <div class="text-center">
+              <button mat-raised-button color="primary">Login <mat-icon>keyboard_arrow_right</mat-icon></button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="text-center">
-  <button mat-raised-button color="primary"  >Login</button>
-</div>
-
-</mat-card>
-</div>
-</div>
-</div>
-</div>
-

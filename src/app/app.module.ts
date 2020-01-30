@@ -20,6 +20,7 @@ import {MatToolbarModule ,
         MatCardModule,
         MatInputModule,
         MatIconModule} from '@angular/material';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import {MatToolbarModule ,
     MatInputModule ,
     MatCardModule,
     MatIconModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
   ],
   providers: [],
