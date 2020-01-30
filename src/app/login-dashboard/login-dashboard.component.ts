@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-dashboard',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private routs: Router) { }
 
   ngOnInit() {
+  }
+
+  onClick(status: string) {
+     if ( status === 'super') {
+     this.routs.navigate(['superadmin']);
+     } else if ( status === 'admin' ) {
+       this.routs.navigate(['admin']);
+     } else if ( status === 'user' ) {
+      this.routs.navigate(['user']);
+    }
   }
 
 }

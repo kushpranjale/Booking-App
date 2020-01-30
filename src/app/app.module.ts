@@ -12,6 +12,11 @@ import { SuperDashboardComponent } from './super-dashboard/super-dashboard.compo
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
+// importing angular material
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,10 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

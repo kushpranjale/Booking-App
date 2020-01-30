@@ -1,2 +1,14 @@
-<p>login-dashboard works!</p>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Booking App</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" mat-button [matMenuTriggerFor]="menu">Login</button>
+    <mat-menu #menu="matMenu" mat-raised-button color="primary">
+      <button  mat-menu-item (click)="onClick('super')" >Super Admin</button>
+      <button mat-menu-item (click)="onClick('admin')" >Admin</button>
+      <button mat-menu-item (click)="onClick('user')" >User</button>
+    </mat-menu>
+  </mat-toolbar-row>
+  </mat-toolbar>
+
 <router-outlet></router-outlet>
