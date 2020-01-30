@@ -13,9 +13,13 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 // importing angular material
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule ,
+        MatMenuModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatInputModule,
+        MatIconModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import {MatButtonModule} from '@angular/material/button';
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule ,
+    MatCardModule,
+    MatIconModule,
     AppRoutingModule,
   ],
   providers: [],

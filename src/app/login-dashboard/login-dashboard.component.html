@@ -2,7 +2,8 @@
   <mat-toolbar-row>
     <span>Booking App</span>
     <span class="spacer"></span>
-    <button mat-raised-button color="primary" mat-button [matMenuTriggerFor]="menu">Login</button>
+    <button mat-raised-button color="primary" mat-button [matMenuTriggerFor]="menu">Login <mat-icon>arrow_drop_down</mat-icon></button>
+
     <mat-menu #menu="matMenu" mat-raised-button color="primary">
       <button  mat-menu-item (click)="onClick('super')" >Super Admin</button>
       <button mat-menu-item (click)="onClick('admin')" >Admin</button>
@@ -12,3 +13,4 @@
   </mat-toolbar>
 
 <router-outlet></router-outlet>
+

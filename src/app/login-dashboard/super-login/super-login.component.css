@@ -1,0 +1,17 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.card {
+  width: 50%;
+  margin:auto;
+}
+
+.card-container {
+  margin-top: 5%;
+}
