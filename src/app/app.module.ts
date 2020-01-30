@@ -3,10 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginDashboardComponent } from './login-dashboard/login-dashboard.component';
+import { SuperLoginComponent } from './login-dashboard/super-login/super-login.component';
+import { AdminLoginComponent } from './login-dashboard/admin-login/admin-login.component';
+import { UserLoginComponent } from './login-dashboard/user-login/user-login.component';
+import { SuperDashboardComponent } from './super-dashboard/super-dashboard.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginDashboardComponent,
+    SuperLoginComponent,
+    AdminLoginComponent,
+    UserLoginComponent,
+    SuperDashboardComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
