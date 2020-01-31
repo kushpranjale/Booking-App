@@ -19,8 +19,11 @@ import {MatToolbarModule ,
         MatFormFieldModule,
         MatCardModule,
         MatInputModule,
+        MatSidenavModule,
+        MatExpansionModule,
         MatIconModule} from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     UserLoginComponent,
     SuperDashboardComponent,
     AdminDashboardComponent,
-    UserDashboardComponent
+    UserDashboardComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
+    MatExpansionModule,
+    MatSidenavModule,
     AppRoutingModule,
   ],
   providers: [],
