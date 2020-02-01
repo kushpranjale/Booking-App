@@ -5,11 +5,12 @@
       <mat-expansion-panel >
         <mat-expansion-panel-header >
           <mat-panel-title  >
-            First option
+            Department
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <p>first of first</p>
+        <p (click)="onClick('department')">Add Department</p>
+        <p (click)="onClick('man-dep')">Manage Department</p>
       </mat-expansion-panel>
       <mat-expansion-panel >
         <mat-expansion-panel-header>
@@ -54,5 +55,6 @@
 
 
     </mat-toolbar>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,3 +1,5 @@
+import { ManageDepartmentComponent } from './admin-dashboard/manage-department/manage-department.component';
+import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
 import { SuperDashboardComponent } from './super-dashboard/super-dashboard.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -34,7 +36,17 @@ const routes: Routes = [
   },
   {
     path: 'admindashboard',
-    component: AdminDashboardComponent
+    component: AdminDashboardComponent,
+    children: [
+      {
+        path : 'add-department',
+        component : AddDepartmentComponent
+      },
+      {
+       path: 'manage-department',
+       component: ManageDepartmentComponent
+      }
+    ]
   },
   {
     path: 'userdashboard',

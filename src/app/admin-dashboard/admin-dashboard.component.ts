@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,7 +14,7 @@ export class AdminDashboardComponent implements OnInit {
    mq = window.matchMedia('(min-width: 800px)');
    menue: boolean;
 
-  constructor() {
+  constructor( private routes: Router) {
     if (matchMedia) {
      this.mq.addEventListener('change', () => {
       console.log(this.mq.matches);
@@ -39,6 +40,16 @@ export class AdminDashboardComponent implements OnInit {
 
     // window width is less than 500px
     }
+
+      }
+
+      onClick( menuItem: string) {
+        if ( menuItem === 'department') {
+           this.routes.navigate(['admindashboard', 'add-department']);
+        }
+        if ( menuItem === 'man-dep') {
+          this.routes.navigate(['admindashboard', 'manage-department']);
+       }
 
       }
 

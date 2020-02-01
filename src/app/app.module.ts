@@ -21,8 +21,14 @@ import {MatToolbarModule ,
         MatInputModule,
         MatSidenavModule,
         MatExpansionModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
         MatIconModule} from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
+import { ManageDepartmentComponent } from './admin-dashboard/manage-department/manage-department.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,6 +41,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     SuperDashboardComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
+    AddDepartmentComponent,
+    ManageDepartmentComponent,
 
   ],
   imports: [
@@ -51,6 +59,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     FormsModule,
     MatExpansionModule,
     MatSidenavModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [],
