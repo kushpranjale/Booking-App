@@ -1,7 +1,8 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DepartmentService } from './../department.service';
 import { Department } from './../department-model/department-model';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-manage-department',
@@ -13,11 +14,12 @@ export class ManageDepartmentComponent implements OnInit {
   displayedColumns: string[] = ['name', 'location', 'services', 'action'];
   dataSource: MatTableDataSource<Department>;
   users: Department[] = [];
+  oneDepartment: Department[] = [];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor( private departmentService: DepartmentService) { }
+  constructor( private departmentService: DepartmentService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.departmentService.getAllDepartments();
@@ -40,12 +42,72 @@ export class ManageDepartmentComponent implements OnInit {
     }
   }
 
-  onEdit( id: string) {
+  onEdit( id: number) {
     console.log('Id on edit department ' + id);
+
+    const dialogRef = this.dialog.open(DialogOverview, {
+      width: '600px',
+      // height: '500px',
+      data: id
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+     // this.animal = result;
+    });
   }
 
-  onDelete( id: string) {
+  onDelete( id: number) {
+    this.departmentService.removeDepartment(id);
     console.log('Id on Delete department ' + id);
+  }
+
+}
+
+@Component (
+  {
+// tslint:disable-next-line: component-selector
+selector : 'diolog-overview-dialog',
+templateUrl: 'dialog_overview.html',
+styleUrls: ['./manage-department.component.css']
+  }
+)
+
+// tslint:disable-next-line: component-class-suffix
+export class DialogOverview implements OnInit {
+
+   departmentGroup: FormGroup;
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverview>,
+    @Inject(MAT_DIALOG_DATA) public data: number, private departmentservice: DepartmentService) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  ngOnInit() {
+    console.log(this.data);
+
+    this.departmentGroup = new FormGroup (
+      {
+        department_name: new FormControl('', [Validators.required]),
+        location: new FormControl('', [Validators.required]),
+        services: new FormControl('', [Validators.required]),
+      }
+    );
+    this.departmentservice.getDepartment(this.data).subscribe( (result: Department) => {
+       console.log(result[0].department_name);
+       this.departmentGroup.setValue({
+        department_name: result[0].department_name,
+        location: result[0].location,
+        services: result[0].services,
+       });
+    });
+  }
+
+  onSubmit(formDirective) {
+
   }
 
 }

@@ -24,10 +24,11 @@ import {MatToolbarModule ,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
+        MatDialogModule,
         MatIconModule} from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
-import { ManageDepartmentComponent } from './admin-dashboard/manage-department/manage-department.component';
+import { ManageDepartmentComponent, DialogOverview } from './admin-dashboard/manage-department/manage-department.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -43,7 +44,11 @@ import { HttpClientModule } from '@angular/common/http';
     UserDashboardComponent,
     AddDepartmentComponent,
     ManageDepartmentComponent,
+    DialogOverview
 
+  ],
+  entryComponents: [
+    DialogOverview
   ],
   imports: [
     BrowserModule,
@@ -63,6 +68,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatSortModule,
     HttpClientModule,
+    MatDialogModule,
     AppRoutingModule,
   ],
   providers: [],

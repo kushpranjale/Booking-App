@@ -58,4 +58,42 @@ export class DepartmentService {
          this.updatedDepartment.next([...this.department]);
       });
    }
+
+   removeDepartment(Id: number) {
+     this.http.delete(`${this.url}remove_department/${Id}`)
+     .subscribe( result => {
+       console.log( result );
+       const departmentData = this.department.filter( d => d.department_id !== Id );
+       this.updatedDepartment.next([...departmentData]);
+     });
+   }
+
+   getDepartment( id: number) {
+     return this.http.get(`${this.url}get_department/${id}`);
+   }
+
+   updateDepartment(id: number, formData: FormGroup) {
+       const departmentdata = {
+         department_name : formData.value.deaprtment_name,
+         location: formData.value.location,
+         services: formData.value.services
+       };
+       this.http.put(`${this.url}update_department/${id}`, departmentdata)
+       .subscribe ( result => {
+        const data = {
+          department_id : id,
+          department_name : formData.value.deaprtment_name,
+          location: formData.value.location,
+          services: formData.value.services
+        };
+        const oldIndex = this.department.findIndex( dep => {
+           if (dep.department_id === id) {
+             return true;
+           } else {
+             return false;
+           }
+         });
+        this.department[oldIndex] = data;
+       });
+   }
 }
