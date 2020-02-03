@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DepartmentService {
   department: Department[] = [];
-  url = 'http://localhost:3000/api/';
+  url = 'http://localhost:4300/api/';
   updatedDepartment = new Subject<Department[]>();
   private headers: HttpHeaders;
   constructor(private http: HttpClient) {
@@ -34,7 +34,7 @@ export class DepartmentService {
     this.http
       .post<{ message: string; Id: number }>(
         `${this.url}new_department`,
-        departmentData, { headers: this.headers}
+        departmentData, {headers: this.headers}
       )
       .subscribe(res => {
         console.log('Department data' + res);
@@ -93,5 +93,11 @@ export class DepartmentService {
         this.department = updatedData;
         this.updatedDepartment.next([...this.department]);
        });
+   }
+
+   // department name validation
+
+   validateDeaprtmentName(name: string) {
+     return this.http.get<{ message: string, status: number}>(`${this.url}get_departmentByName/${name}`);
    }
 }
