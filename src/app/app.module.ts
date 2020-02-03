@@ -25,11 +25,14 @@ import {MatToolbarModule ,
         MatSortModule,
         MatTableModule,
         MatDialogModule,
+        MatStepperModule,
+        MatSnackBarModule,
         MatIconModule} from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
 import { ManageDepartmentComponent, DialogOverview } from './admin-dashboard/manage-department/manage-department.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EmpolyeesComponent } from './admin-dashboard/empolyees/empolyees.component';
 
 
 @NgModule({
@@ -44,7 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     UserDashboardComponent,
     AddDepartmentComponent,
     ManageDepartmentComponent,
-    DialogOverview
+    DialogOverview,
+    EmpolyeesComponent
 
   ],
   entryComponents: [
@@ -65,10 +69,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatExpansionModule,
     MatSidenavModule,
     MatPaginatorModule,
+    MatStepperModule,
     MatTableModule,
     MatSortModule,
     HttpClientModule,
     MatDialogModule,
+    MatSnackBarModule,
     AppRoutingModule,
   ],
   providers: [],

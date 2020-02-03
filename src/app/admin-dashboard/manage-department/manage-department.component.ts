@@ -1,8 +1,8 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { DepartmentService } from './../department.service';
 import { Department } from './../department-model/department-model';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-manage-department',
@@ -80,7 +80,8 @@ export class DialogOverview implements OnInit {
    departmentGroup: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<DialogOverview>,
-    @Inject(MAT_DIALOG_DATA) public data: number, private departmentservice: DepartmentService) {}
+    @Inject(MAT_DIALOG_DATA) public data: number, private departmentservice: DepartmentService,
+    private snackBar: MatSnackBar) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -106,8 +107,19 @@ export class DialogOverview implements OnInit {
     });
   }
 
-  onSubmit(formDirective) {
+  onSubmit(formDirective: FormGroupDirective) {
+    if ( this.departmentGroup.invalid) {
+      return;
+    } else {
+      this.departmentservice.updateDepartment(this.data, this.departmentGroup);
+      console.log(this.departmentGroup.value);
+      this.snackBar.open('Successfully Update', 'close', {
+          duration: 2000
+      });
+      this.dialogRef.close();
 
+    }
+  }
   }
 
-}
+

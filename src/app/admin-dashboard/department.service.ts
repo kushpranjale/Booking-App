@@ -13,9 +13,9 @@ export class DepartmentService {
   updatedDepartment = new Subject<Department[]>();
   private headers: HttpHeaders;
   constructor(private http: HttpClient) {
-    // this.headers = new HttpHeaders({
-    //   'Content-Type': 'application/json'
-    // });
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
   }
 
   // listener
@@ -34,7 +34,7 @@ export class DepartmentService {
     this.http
       .post<{ message: string; Id: number }>(
         `${this.url}new_department`,
-        departmentData,
+        departmentData, { headers: this.headers}
       )
       .subscribe(res => {
         console.log('Department data' + res);
@@ -72,9 +72,10 @@ export class DepartmentService {
      return this.http.get(`${this.url}get_department/${id}`);
    }
 
+   // updating department
    updateDepartment(id: number, formData: FormGroup) {
        const departmentdata = {
-         department_name : formData.value.deaprtment_name,
+         department_name : formData.value.department_name,
          location: formData.value.location,
          services: formData.value.services
        };
@@ -82,18 +83,15 @@ export class DepartmentService {
        .subscribe ( result => {
         const data = {
           department_id : id,
-          department_name : formData.value.deaprtment_name,
+          department_name : formData.value.department_name,
           location: formData.value.location,
           services: formData.value.services
         };
-        const oldIndex = this.department.findIndex( dep => {
-           if (dep.department_id === id) {
-             return true;
-           } else {
-             return false;
-           }
-         });
-        this.department[oldIndex] = data;
+        const updatedData = [...this.department];
+        const oldIndex = updatedData.findIndex( dep => dep.department_id === id);
+        updatedData[oldIndex] = data;
+        this.department = updatedData;
+        this.updatedDepartment.next([...this.department]);
        });
    }
 }

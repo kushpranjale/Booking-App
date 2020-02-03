@@ -12,11 +12,13 @@
      </mat-form-field>
      <mat-form-field>
        <input matInput placeholder="Enter Location"  formControlName= "location">
-       <mat-error>this field is required!!!</mat-error>
+       <mat-error *ngIf="departmentGroup.get('location').hasError('minlength') ">location should be minimum 3 charcter!!!</mat-error>
+       <mat-error *ngIf="departmentGroup.get('location').hasError('required') ">this field is required!!!</mat-error>
      </mat-form-field>
      <mat-form-field>
        <textarea matInput placeholder="Enter services"   formControlName="services"></textarea>
-       <mat-error>this field is required!!!</mat-error>
+       <mat-error *ngIf="departmentGroup.get('services').hasError('minlength') ">services should be minimum 3 charcter!!!</mat-error>
+       <mat-error *ngIf="departmentGroup.get('services').hasError('required') ">this field is required!!!</mat-error>
      </mat-form-field>
    </div>
    <button mat-raised-button color="primary">Update</button>
