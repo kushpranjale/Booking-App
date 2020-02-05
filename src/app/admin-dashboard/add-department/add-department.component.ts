@@ -1,4 +1,4 @@
-import { DepartmentService } from './../department.service';
+import { DepartmentService } from '../services/department.service';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { Component, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
 import { MatSnackBar } from '@angular/material';

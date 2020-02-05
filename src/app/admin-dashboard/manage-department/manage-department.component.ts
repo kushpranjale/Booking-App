@@ -1,6 +1,6 @@
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
-import { DepartmentService } from './../department.service';
-import { Department } from './../department-model/department-model';
+import { DepartmentService } from '../services/department.service';
+import { Department } from '../models/department-model';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 

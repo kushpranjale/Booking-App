@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { Department } from './department-model/department-model';
+import { Department } from '../models/department-model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

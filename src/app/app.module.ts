@@ -22,18 +22,23 @@ import {MatToolbarModule ,
         MatSidenavModule,
         MatExpansionModule,
         MatPaginatorModule,
+        MatDatepickerModule,
         MatSortModule,
         MatTableModule,
         MatProgressSpinnerModule,
         MatDialogModule,
+        MatRadioModule,
         MatStepperModule,
+        MatNativeDateModule,
         MatSnackBarModule,
-        MatIconModule} from '@angular/material';
+        MatIconModule,
+        MAT_DATE_LOCALE,} from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
 import { ManageDepartmentComponent, DialogOverview } from './admin-dashboard/manage-department/manage-department.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmpolyeesComponent } from './admin-dashboard/empolyees/empolyees.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -67,19 +72,24 @@ import { EmpolyeesComponent } from './admin-dashboard/empolyees/empolyees.compon
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDatepickerModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    MatNativeDateModule,
     MatSidenavModule,
     MatPaginatorModule,
     MatStepperModule,
     MatTableModule,
     MatSortModule,
     HttpClientModule,
+    MatRadioModule,
     MatDialogModule,
     MatSnackBarModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [ DatePipe,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
