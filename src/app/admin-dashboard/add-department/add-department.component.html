@@ -8,7 +8,7 @@
     <form [formGroup]= "departmentGroup" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
       <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Enter Department Name" formControlName="department_name" (focus) = "onCahngeValue()">
+        <input matInput placeholder="Enter Department Name" formControlName="department_name" (focus) = "onChangeValue()">
         <mat-error>this field is required!!!</mat-error>
 
       </mat-form-field>

@@ -37,7 +37,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
 import { ManageDepartmentComponent, DialogOverview } from './admin-dashboard/manage-department/manage-department.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EmpolyeesComponent } from './admin-dashboard/empolyees/empolyees.component';
+import { EmployeesComponent } from './admin-dashboard/employees/employees.component';
 import { DatePipe } from '@angular/common';
 
 
@@ -54,7 +54,7 @@ import { DatePipe } from '@angular/common';
     AddDepartmentComponent,
     ManageDepartmentComponent,
     DialogOverview,
-    EmpolyeesComponent
+    EmployeesComponent
 
   ],
   entryComponents: [

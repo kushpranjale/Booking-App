@@ -1,4 +1,4 @@
-import { EmpolyeesComponent } from './admin-dashboard/empolyees/empolyees.component';
+import { EmployeesComponent } from './admin-dashboard/employees/employees.component';
 import { ManageDepartmentComponent } from './admin-dashboard/manage-department/manage-department.component';
 import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
 import { SuperDashboardComponent } from './super-dashboard/super-dashboard.component';
@@ -49,7 +49,7 @@ const routes: Routes = [
       },
       {
         path: 'manage-employee',
-        component: EmpolyeesComponent
+        component: EmployeesComponent
       }
     ]
   },

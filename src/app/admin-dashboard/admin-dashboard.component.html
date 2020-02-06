@@ -1,5 +1,5 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav [mode]="mod" [(opened)]="open" style="background:  #3f51b5;">
+<mat-sidenav-container class="example-container "   >
+  <mat-sidenav class="mat-elevation-z10" #sidenav [mode]="mod" [(opened)]="open" style="background:  #3f51b5;">
     <mat-card style="background-color:#3f51b5; color: #fff;">Admin Panel</mat-card>
     <mat-accordion  multi="true" >
       <mat-expansion-panel >
@@ -40,7 +40,7 @@
 
 
 
-    <mat-toolbar style="width: 100% !important;" color="primary">
+    <mat-toolbar class="mat-elevation-z10" style="width: 100% !important;" color="primary">
       <p *ngIf="menue" style="text-align: end; color: white; font-size: 60px;">
          <button mat-button (click)="sidenav.toggle()">
           <mat-icon>menue</mat-icon>

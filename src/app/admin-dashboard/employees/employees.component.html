@@ -14,11 +14,17 @@
       </mat-step>
       <mat-step [stepControl]="employeeFormGroup" [completed]="check">
         <form [formGroup]="employeeFormGroup">
-          <ng-template matStepLabel>Fill out epmloyee details</ng-template>
+          <ng-template matStepLabel>Fill out employee details</ng-template>
           <div class="example-container">
             <mat-form-field>
-              <input matInput placeholder="Employee User Name" formControlName="emp_username" required />
+              <input matInput placeholder="Employee User Name" formControlName="emp_username" required  />
+              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('required') ">this field is required!!!</mat-error>
+              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('minLength') ">minimum 3 character required!!!</mat-error>
+              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('maxLength') ">maximum 19 character required!!!</mat-error>
+              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('userError') ">user already exist!!!</mat-error>
+               <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('whitSpaceError') ">spaces are not allowed!!!</mat-error>
             </mat-form-field>
+             <!-- <p *ngIf="emp_name" gcontent-xio-c10="" class="mat-error" role="alert" id="mat-error-0" style="font-size: 75%; text-align: left;">{{message}}!!!</p> -->
             <mat-form-field>
               <input matInput placeholder="Employee Password" formControlName="emp_password" required />
             </mat-form-field>.
@@ -37,7 +43,7 @@
             </mat-radio-group>
 
             <mat-form-field>
-              <input matInput placeholder="Adress" formControlName="address" required />
+              <input matInput placeholder="Address" formControlName="address" required />
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="Mobile" formControlName="mobile" required />

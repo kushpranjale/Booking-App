@@ -16,3 +16,7 @@ mat-radio-button {
   margin: 5px;
 
 }
+
+mat-error {
+  margin: auto;
+}

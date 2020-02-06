@@ -22,14 +22,14 @@ export class AddDepartmentComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.departmentGroup = new FormGroup (
       {
-        department_name: new FormControl('', [Validators.required,]),
+        department_name: new FormControl('', [Validators.required]),
         location: new FormControl('', [Validators.required, Validators.minLength(3)]),
         services: new FormControl('', [Validators.required, Validators.minLength(3)]),
       }
 
     );
   }
-  onCahngeValue(){
+  onChangeValue(){
     this.dep_name = false;
   }
  ngOnChanges() {

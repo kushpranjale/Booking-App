@@ -1,16 +1,24 @@
+import { CustomValidators } from '../custom_validators/emp_validator';
+
+
+import { EmployeeDetail } from './../models/employee-details-model';
 import { EmployeeDetailsService } from '../services/employee-details.service';
 import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 
-@Component({
-  selector: 'app-empolyees',
-  templateUrl: './empolyees.component.html',
-  styleUrls: ['./empolyees.component.css']
-})
-export class EmpolyeesComponent implements OnInit {
 
+
+
+@Component({
+  selector: 'app-employees',
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.css']
+})
+export class EmployeesComponent implements OnInit {
+
+  employeeDetail: EmployeeDetail[];
   isLinear = false;
   employeeFormGroup: FormGroup;
   bankFormGroup: FormGroup;
@@ -18,18 +26,19 @@ export class EmpolyeesComponent implements OnInit {
   jobFormGroup: FormGroup;
   salaryFormGroup: FormGroup;
   check = false;
-
-
+  // tslint:disable-next-line: variable-name
   constructor(private _formBuilder: FormBuilder ,
               private employeeDetailService: EmployeeDetailsService,
-              private datePipe: DatePipe ) { }
+              private datePipe: DatePipe ,
+              private customValidator: CustomValidators) { }
 
   ngOnInit() {
 
     this.employeeDetailService.getAllEmployee();
     // employee detail form
     this.employeeFormGroup = this._formBuilder.group({
-      emp_username: ['', Validators.required],
+      emp_username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(19),
+                    this.ValidatorUser.bind(this), this.customValidator.checkWhiteSpace ]],
       emp_password: ['', Validators.required],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -78,16 +87,33 @@ export class EmpolyeesComponent implements OnInit {
      from_date: ['', Validators.required],
      to_date: ['', Validators.required],
     });
+
+    // calling employee details
+
+    this.employeeDetailService.employeeListener().
+    subscribe( result => {
+       this.employeeDetail = result;
+       console.log(result);
+    });
   }
 
    checkCase() {
      this.check = true;
-
+     console.log(this.employeeFormGroup);
      console.log( this.datePipe.transform(this.employeeFormGroup.value.date_of_birth, 'MM-dd-yyyy'));
      this.employeeDetailService.addEmployee(this.employeeFormGroup);
    }
     onSubmit() {
     console.log( this.employeeFormGroup);
-    console.log(this.bankFormGroup)
+    console.log(this.bankFormGroup);
     }
+
+    ValidatorUser( control: FormControl ) : any {
+      // this.customValidator.userNameValidator(control.value);
+     console.log(this.customValidator.userNameValidator(control)[0]);
+     return this.customValidator.userNameValidator(control)[0];
+}
+    // WhiteSpaceValidator( control: FormControl) {
+    //  return this.customValidator.checkWhiteSpace(control);
+    // }
 }
