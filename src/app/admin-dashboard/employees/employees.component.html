@@ -24,6 +24,7 @@
               <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('userError') ">user already exist!!!</mat-error>
                <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('whitSpaceError') ">spaces are not allowed!!!</mat-error>
             </mat-form-field>
+
              <!-- <p *ngIf="emp_name" gcontent-xio-c10="" class="mat-error" role="alert" id="mat-error-0" style="font-size: 75%; text-align: left;">{{message}}!!!</p> -->
             <mat-form-field>
               <input matInput placeholder="Employee Password" formControlName="emp_password" required />
@@ -224,4 +225,7 @@
     </mat-horizontal-stepper>
   </div>
 </mat-card>
+<app-manage-employee></app-manage-employee>
+
+
 

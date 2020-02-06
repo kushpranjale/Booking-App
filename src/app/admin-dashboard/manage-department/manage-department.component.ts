@@ -11,7 +11,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MAT_DIALOG_DATA, 
 })
 export class ManageDepartmentComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'location', 'services', 'action'];
+  displayedColumns: string[] = ['sr' , 'name', 'location', 'services', 'action'];
   dataSource: MatTableDataSource<Department>;
   users: Department[] = [];
   oneDepartment: Department[] = [];

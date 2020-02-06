@@ -30,6 +30,7 @@ import {MatToolbarModule ,
         MatRadioModule,
         MatStepperModule,
         MatNativeDateModule,
+        MatTabsModule,
         MatSnackBarModule,
         MatIconModule,
         MAT_DATE_LOCALE,} from '@angular/material';
@@ -39,6 +40,7 @@ import { ManageDepartmentComponent, DialogOverview } from './admin-dashboard/man
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeesComponent } from './admin-dashboard/employees/employees.component';
 import { DatePipe } from '@angular/common';
+import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-employee/manage-employee.component';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { DatePipe } from '@angular/common';
     AddDepartmentComponent,
     ManageDepartmentComponent,
     DialogOverview,
-    EmployeesComponent
+    EmployeesComponent,
+    ManageEmployeeComponent
 
   ],
   entryComponents: [
@@ -82,6 +85,7 @@ import { DatePipe } from '@angular/common';
     MatTableModule,
     MatSortModule,
     HttpClientModule,
+    MatTabsModule,
     MatRadioModule,
     MatDialogModule,
     MatSnackBarModule,
