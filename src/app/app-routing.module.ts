@@ -1,3 +1,4 @@
+import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-employee/manage-employee.component';
 import { EmployeesComponent } from './admin-dashboard/employees/employees.component';
 import { ManageDepartmentComponent } from './admin-dashboard/manage-department/manage-department.component';
 import { AddDepartmentComponent } from './admin-dashboard/add-department/add-department.component';
@@ -48,8 +49,12 @@ const routes: Routes = [
        component: ManageDepartmentComponent
       },
       {
-        path: 'manage-employee',
+        path: 'add-employee',
         component: EmployeesComponent
+      },
+      {
+        path: 'man-employee',
+        component: ManageEmployeeComponent
       }
     ]
   },

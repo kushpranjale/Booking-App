@@ -5,99 +5,111 @@ import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class DepartmentService {
-  department: Department[] = [];
-  url = 'http://localhost:4300/api/';
-  updatedDepartment = new Subject<Department[]>();
-  private headers: HttpHeaders;
-  constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-  }
+    department: Department[] = [];
+    url = 'http://localhost:4300/api/';
+    updatedDepartment = new Subject<Department[]>();
+    private headers: HttpHeaders;
 
-  // listener
-  departmentListner() {
-    return this.updatedDepartment.asObservable();
-  }
+    constructor(private http: HttpClient) {
+        this.headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+    }
 
-  // adding department data
-  addDepartment(formData: FormGroup) {
-    const departmentData = {
-      department_id: formData.value.department_id,
-      department_name: formData.value.department_name,
-      location: formData.value.location,
-      services: formData.value.services
-    };
-    this.http
-      .post<{ message: string; Id: number }>(
-        `${this.url}new_department`,
-        departmentData, {headers: this.headers}
-      )
-      .subscribe(res => {
-        console.log('Department data' + res);
-        const data = {
-          department_id: res.Id,
-          department_name: formData.value.department_name,
-          location: formData.value.location,
-          services: formData.value.services
+    // listener
+    departmentListner() {
+        return this.updatedDepartment.asObservable();
+    }
+
+    // adding department data
+    addDepartment(formData: FormGroup) {
+        const departmentData = {
+            department_id: formData.value.department_id,
+            department_name: formData.value.department_name,
+            location: formData.value.location,
+            services: formData.value.services,
         };
-        this.department.push(data);
-        this.updatedDepartment.next([...this.department]);
-      });
-  }
+        this.http
+            .post<{ message: string; Id: number }>(
+                `${this.url}new_department`,
+                departmentData,
+                { headers: this.headers }
+            )
+            .subscribe(res => {
+                console.log('Department data' + res);
+                const data = {
+                    department_id: res.Id,
+                    department_name: formData.value.department_name,
+                    location: formData.value.location,
+                    services: formData.value.services,
+                };
+                this.department.push(data);
+                this.updatedDepartment.next([...this.department]);
+            });
+    }
 
-   // Get all departments
+    // Get all departments
 
-   getAllDepartments() {
-      this.http.get(`${this.url}get_departments`).subscribe( (result: Department[]) => {
-         console.log(result);
-         this.department = result;
-         this.updatedDepartment.next([...this.department]);
-      });
-   }
+    getAllDepartments() {
+        this.http
+            .get(`${this.url}get_departments`)
+            .subscribe((result: Department[]) => {
+                console.log(result);
+                this.department = result;
+                this.updatedDepartment.next([...this.department]);
+            });
+    }
 
-   removeDepartment(Id: number) {
-     this.http.delete(`${this.url}remove_department/${Id}`)
-     .subscribe( result => {
-       console.log( result );
-       const departmentData = this.department.filter( d => d.department_id !== Id );
-       this.updatedDepartment.next([...departmentData]);
-     });
-   }
+    removeDepartment(Id: number) {
+        this.http
+            .delete(`${this.url}remove_department/${Id}`)
+            .subscribe(result => {
+                console.log(result);
+                const departmentData = this.department.filter(
+                    d => d.department_id !== Id
+                );
+                this.updatedDepartment.next([...departmentData]);
+            });
+    }
 
-   getDepartment( id: number) {
-     return this.http.get(`${this.url}get_department/${id}`);
-   }
+    getDepartment(id: number) {
+        return this.http.get(`${this.url}get_department/${id}`);
+    }
 
-   // updating department
-   updateDepartment(id: number, formData: FormGroup) {
-       const departmentdata = {
-         department_name : formData.value.department_name,
-         location: formData.value.location,
-         services: formData.value.services
-       };
-       this.http.put(`${this.url}update_department/${id}`, departmentdata)
-       .subscribe ( result => {
-        const data = {
-          department_id : id,
-          department_name : formData.value.department_name,
-          location: formData.value.location,
-          services: formData.value.services
+    // updating department
+    updateDepartment(id: number, formData: FormGroup) {
+        const departmentdata = {
+            department_name: formData.value.department_name,
+            location: formData.value.location,
+            services: formData.value.services,
         };
-        const updatedData = [...this.department];
-        const oldIndex = updatedData.findIndex( dep => dep.department_id === id);
-        updatedData[oldIndex] = data;
-        this.department = updatedData;
-        this.updatedDepartment.next([...this.department]);
-       });
-   }
+        this.http
+            .put(`${this.url}update_department/${id}`, departmentdata)
+            .subscribe(result => {
+                const data = {
+                    department_id: id,
+                    department_name: formData.value.department_name,
+                    location: formData.value.location,
+                    services: formData.value.services,
+                };
+                const updatedData = [...this.department];
+                const oldIndex = updatedData.findIndex(
+                    dep => dep.department_id === id
+                );
+                updatedData[oldIndex] = data;
+                this.department = updatedData;
+                this.updatedDepartment.next([...this.department]);
+            });
+    }
 
-   // department name validation
+    // department name validation
 
-   validateDeaprtmentName(name: string) {
-     return this.http.get<{ message: string, status: number}>(`${this.url}get_departmentByName/${name}`);
-   }
+    validateDeaprtmentName(name: string) {
+        return this.http.get<{ message: string; status: number }>(
+            `${this.url}get_departmentByName/${name}`
+        );
+    }
 }

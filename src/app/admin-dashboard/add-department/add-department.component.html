@@ -1,33 +1,79 @@
+<div class="container">
+    <mat-card class="text-center">
+        <mat-card-title style="font-family: sans-serif;"
+            >Enter Department Deatails</mat-card-title
+        >
+        <form
+            [formGroup]="departmentGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Enter Department Name"
+                        formControlName="department_name"
+                        (focus)="onChangeValue()"
+                    />
+                    <mat-error>this field is required!!!</mat-error>
+                </mat-form-field>
+                <p
+                    *ngIf="dep_name"
+                    gcontent-xio-c10=""
+                    class="mat-error"
+                    role="alert"
+                    id="mat-error-0"
+                    style="font-size: 75%; text-align: left;"
+                >
+                    {{ message }}!!!
+                </p>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Enter Location"
+                        formControlName="location"
+                    />
+                    <mat-error
+                        *ngIf="
+                            departmentGroup
+                                .get('location')
+                                .hasError('minlength')
+                        "
+                        >location should be minimum 3 charcter!!!</mat-error
+                    >
+                    <mat-error
+                        *ngIf="
+                            departmentGroup.get('location').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                    <!-- <div _ngcontent-gco-c10 class="mat-error" role="alert" *ngIf="departmentGroup.get('location').hasError('minlength') " >  okau</div> -->
+                </mat-form-field>
 
- <div class="container">
-
-
-   <mat-card class="text-center">
-
-     <mat-card-title style="font-family: sans-serif;">Enter Department Deatails</mat-card-title>
-    <form [formGroup]= "departmentGroup" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
-      <div class="example-container">
-      <mat-form-field>
-        <input matInput placeholder="Enter Department Name" formControlName="department_name" (focus) = "onChangeValue()">
-        <mat-error>this field is required!!!</mat-error>
-
-      </mat-form-field>
-      <p *ngIf="dep_name" gcontent-xio-c10="" class="mat-error" role="alert" id="mat-error-0" style="font-size: 75%; text-align: left;">{{message}}!!!</p>
-      <mat-form-field>
-        <input matInput placeholder="Enter Location" formControlName= "location">
-        <mat-error *ngIf="departmentGroup.get('location').hasError('minlength') ">location should be minimum 3 charcter!!!</mat-error>
-        <mat-error *ngIf="departmentGroup.get('location').hasError('required') ">this field is required!!!</mat-error>
-        <!-- <div _ngcontent-gco-c10 class="mat-error" role="alert" *ngIf="departmentGroup.get('location').hasError('minlength') " >  okau</div> -->
-      </mat-form-field>
-
-      <mat-form-field>
-        <textarea matInput placeholder="Enter services" formControlName="services"></textarea>
-        <mat-error *ngIf="departmentGroup.get('services').hasError('minlength') ">services should be minimum 3 charcter!!!</mat-error>
-        <mat-error *ngIf="departmentGroup.get('services').hasError('required') ">this field is required!!!</mat-error>
-      </mat-form-field>
-    </div>
-    <button mat-raised-button color="primary">Submit</button>
-  </form>
-</mat-card>
+                <mat-form-field>
+                    <textarea
+                        matInput
+                        placeholder="Enter services"
+                        formControlName="services"
+                    ></textarea>
+                    <mat-error
+                        *ngIf="
+                            departmentGroup
+                                .get('services')
+                                .hasError('minlength')
+                        "
+                        >services should be minimum 3 charcter!!!</mat-error
+                    >
+                    <mat-error
+                        *ngIf="
+                            departmentGroup.get('services').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary">Submit</button>
+        </form>
+    </mat-card>
 </div>
-

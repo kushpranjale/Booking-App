@@ -1,59 +1,68 @@
-<mat-sidenav-container class="example-container "   >
-  <mat-sidenav class="mat-elevation-z10" #sidenav [mode]="mod" [(opened)]="open" style="background:  #3f51b5;">
-    <mat-card style="background-color:#3f51b5; color: #fff;">Admin Panel</mat-card>
-    <mat-accordion  multi="true" >
-      <mat-expansion-panel >
-        <mat-expansion-panel-header >
-          <mat-panel-title  >
-            Department
-          </mat-panel-title>
+<mat-sidenav-container class="example-container ">
+    <mat-sidenav
+        class="mat-elevation-z10"
+        #sidenav
+        [mode]="mod"
+        [(opened)]="open"
+        style="background:  #3f51b5;"
+    >
+        <mat-card style="background-color:#3f51b5; color: #fff;"
+            >Admin Panel</mat-card
+        >
+        <mat-accordion multi="true">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Department
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p (click)="onClick('department')">Add Department</p>
+                <p (click)="onClick('man-dep')">Manage Department</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Employees
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p (click)="onClick('add-emp')">Add employee</p>
+                <p (click)="onClick('man-emp')">Manage employee</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Third option
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>first of third</p>
+                <p>seccond of third</p>
+                <p>third of third</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-sidenav>
 
-        </mat-expansion-panel-header>
-        <p (click)="onClick('department')">Add Department</p>
-        <p (click)="onClick('man-dep')">Manage Department</p>
-      </mat-expansion-panel>
-      <mat-expansion-panel >
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Employees
-          </mat-panel-title>
+    <mat-sidenav-content>
+        <mat-toolbar
+            class="mat-elevation-z10"
+            style="width: 100% !important;"
+            color="primary"
+        >
+            <p
+                *ngIf="menue"
+                style="text-align: end; color: white; font-size: 60px;"
+            >
+                <button mat-button (click)="sidenav.toggle()">
+                    <mat-icon>menue</mat-icon>
+                </button>
+            </p>
 
-        </mat-expansion-panel-header>
-        <p (click)="onClick('man-emp')">Manage employee </p>
-      </mat-expansion-panel>
-      <mat-expansion-panel >
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Third option
-          </mat-panel-title>
+            Admin Dashboard
+            <span class="spacer"> </span>
 
-        </mat-expansion-panel-header>
-        <p>first of third  </p>
-        <p>seccond of third  </p>
-        <p> third of third</p>
-      </mat-expansion-panel>
-
-    </mat-accordion>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-
-
-
-    <mat-toolbar class="mat-elevation-z10" style="width: 100% !important;" color="primary">
-      <p *ngIf="menue" style="text-align: end; color: white; font-size: 60px;">
-         <button mat-button (click)="sidenav.toggle()">
-          <mat-icon>menue</mat-icon>
-        </button>
-      </p>
-
-      Admin Dashboard
-      <span class="spacer"> </span>
-
-      <button mat-raised-button color="primary" id="logout">Login out <mat-icon>exit_to_app</mat-icon></button>
-
-
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
+            <button mat-raised-button color="primary" id="logout">
+                Login out <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
 </mat-sidenav-container>

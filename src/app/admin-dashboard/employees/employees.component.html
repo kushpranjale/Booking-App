@@ -1,231 +1,476 @@
 <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
+    {{ !isLinear ? 'Enable linear mode' : 'Disable linear mode' }}
 </button>
 <mat-card>
-  <div >
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
-      <mat-step>
-        <ng-template matStepLabel>Add Employee</ng-template>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
+    <div>
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <!-- Employee Details Form -->
+            <mat-step [stepControl]="employeeFormGroup" [completed]="check">
+                <form [formGroup]="employeeFormGroup">
+                    <ng-template matStepLabel
+                        >Fill out employee details</ng-template
+                    >
+                    <div class="example-container">
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Employee User Name"
+                                formControlName="emp_username"
+                                required
+                            />
+                            <mat-error
+                                *ngIf="
+                                    employeeFormGroup
+                                        .get('emp_username')
+                                        .hasError('required')
+                                "
+                                >this field is required!!!</mat-error
+                            >
+                            <mat-error
+                                *ngIf="
+                                    employeeFormGroup
+                                        .get('emp_username')
+                                        .hasError('minLength')
+                                "
+                                >minimum 3 character required!!!</mat-error
+                            >
+                            <mat-error
+                                *ngIf="
+                                    employeeFormGroup
+                                        .get('emp_username')
+                                        .hasError('maxLength')
+                                "
+                                >maximum 19 character required!!!</mat-error
+                            >
+                            <mat-error
+                                *ngIf="
+                                    employeeFormGroup
+                                        .get('emp_username')
+                                        .hasError('userError')
+                                "
+                                >user already exist!!!</mat-error
+                            >
+                            <mat-error
+                                *ngIf="
+                                    employeeFormGroup
+                                        .get('emp_username')
+                                        .hasError('whitSpaceError')
+                                "
+                                >spaces are not allowed!!!</mat-error
+                            >
+                        </mat-form-field>
 
-        <!-- Employee Details Form -->
-      </mat-step>
-      <mat-step [stepControl]="employeeFormGroup" [completed]="check">
-        <form [formGroup]="employeeFormGroup">
-          <ng-template matStepLabel>Fill out employee details</ng-template>
-          <div class="example-container">
-            <mat-form-field>
-              <input matInput placeholder="Employee User Name" formControlName="emp_username" required  />
-              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('required') ">this field is required!!!</mat-error>
-              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('minLength') ">minimum 3 character required!!!</mat-error>
-              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('maxLength') ">maximum 19 character required!!!</mat-error>
-              <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('userError') ">user already exist!!!</mat-error>
-               <mat-error *ngIf="employeeFormGroup.get('emp_username').hasError('whitSpaceError') ">spaces are not allowed!!!</mat-error>
-            </mat-form-field>
+                        <!-- <p *ngIf="emp_name" gcontent-xio-c10="" class="mat-error" role="alert" id="mat-error-0" style="font-size: 75%; text-align: left;">{{message}}!!!</p> -->
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Employee Password"
+                                formControlName="emp_password"
+                                required
+                            /> </mat-form-field
+                        >.
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="First Name"
+                                formControlName="first_name"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Last Name"
+                                formControlName="last_name"
+                                required
+                            />
+                        </mat-form-field>
+                        <label
+                            class="example-radio-group"
+                            style="color: #7E7E7E; "
+                            >Gender</label
+                        >
+                        <mat-radio-group
+                            aria-label="Gender"
+                            formControlName="gender"
+                            required
+                        >
+                            <div class="example-radio-button">
+                                <mat-radio-button value="1"
+                                    >male</mat-radio-button
+                                >
+                                <mat-radio-button value="2"
+                                    >female</mat-radio-button
+                                >
+                            </div>
+                        </mat-radio-group>
 
-             <!-- <p *ngIf="emp_name" gcontent-xio-c10="" class="mat-error" role="alert" id="mat-error-0" style="font-size: 75%; text-align: left;">{{message}}!!!</p> -->
-            <mat-form-field>
-              <input matInput placeholder="Employee Password" formControlName="emp_password" required />
-            </mat-form-field>.
-            <mat-form-field>
-              <input matInput placeholder="First Name" formControlName="first_name" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Last Name" formControlName="last_name" required />
-            </mat-form-field>
-            <label class="example-radio-group" style="color: #7E7E7E; ">Gender</label>
-            <mat-radio-group aria-label="Gender" formControlName="gender" required>
-              <div class="example-radio-button">
-                <mat-radio-button value="1">male</mat-radio-button>
-                <mat-radio-button value="2">female</mat-radio-button>
-              </div>
-            </mat-radio-group>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Address"
+                                formControlName="address"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Mobile"
+                                formControlName="mobile"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="email"
+                                formControlName="email"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_birth"
+                                placeholder="Date of birth"
+                                formControlName="date_of_birth"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_birth"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_birth></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_join"
+                                placeholder="Joining Date"
+                                formControlName="date_of_joining"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_join"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_join></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_resign"
+                                placeholder="Resign Date"
+                                formControlName="date_of_resign"
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_resign"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_resign></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Kyc Type"
+                                formControlName="kyc_type"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Kyc Number"
+                                formControlName="kyc_number"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Kyc Proof"
+                                formControlName="kyc_proof"
+                                required
+                            />
+                        </mat-form-field>
+                    </div>
 
-            <mat-form-field>
-              <input matInput placeholder="Address" formControlName="address" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Mobile" formControlName="mobile" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="email" formControlName="email" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_birth" placeholder="Date of birth" formControlName="date_of_birth"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_birth"></mat-datepicker-toggle>
-              <mat-datepicker #picker_birth></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_join" placeholder="Joining Date" formControlName="date_of_joining"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_join"></mat-datepicker-toggle>
-              <mat-datepicker #picker_join></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_resign" placeholder="Resign Date"
-                formControlName="date_of_resign" />
-              <mat-datepicker-toggle matSuffix [for]="picker_resign"></mat-datepicker-toggle>
-              <mat-datepicker #picker_resign></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Kyc Type" formControlName="kyc_type" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Kyc Number" formControlName="kyc_number" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Kyc Proof" formControlName="kyc_proof" required />
-            </mat-form-field>
-          </div>
+                    <div>
+                        <button mat-button matStepperNext (click)="checkCase()">
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
 
-          <div>
-            <button mat-button matStepperNext (click)="checkCase()">
-              Next
-            </button>
-          </div>
-        </form>
-      </mat-step>
+            <!-- Bank Details Form -->
+            <mat-step [stepControl]="bankFormGroup">
+                <form [formGroup]="bankFormGroup">
+                    <ng-template matStepLabel
+                        >Fill out Bank Details
+                    </ng-template>
+                    <div class="example-container">
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [value]="username"
+                                placeholder="User name"
+                                formControlName="emp_username"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Bank name"
+                                formControlName="bank_name"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Bank branch"
+                                formControlName="bank_branch"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Account number"
+                                formControlName="acc_no"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="IFSC code"
+                                formControlName="IFSC_code"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="PAN Id"
+                                formControlName="PAN_Id"
+                                required
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button
+                            mat-button
+                            matStepperNext
+                            (click)="checkBankCase()"
+                        >
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
 
-      <!-- Bank Details Form -->
-      <mat-step [stepControl]="bankFormGroup">
-        <form [formGroup]="bankFormGroup">
-          <ng-template matStepLabel>Fill out Bank Details </ng-template>
-          <div class="example-container">
-            <mat-form-field>
-              <input matInput placeholder="User name" formControlName="emp_username" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Bank name" formControlName="bank_name" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Bank branch" formControlName="bank_branch" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Account number" formControlName="acc_no" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="IFSC code" formControlName="IFSC_code" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="PAN Id" formControlName="PAN_Id" required />
-            </mat-form-field>
-          </div>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+            <!-- Department Details Form -->
+            <mat-step [stepControl]="depFromGroup">
+                <form [formGroup]="depFromGroup">
+                    <ng-template matStepLabel
+                        >Fill out Department Details
+                    </ng-template>
+                    <div class="example-container">
+                        <mat-form-field>
+                            <input
+                                [value]="username"
+                                matInput
+                                placeholder="User name"
+                                formControlName="emp_username"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Depart name"
+                                formControlName="department_id"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_join_dep"
+                                placeholder="Joining date"
+                                formControlName="from_date"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_join_dep"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_join_dep></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_resign_dep"
+                                placeholder="Resign date"
+                                formControlName="to_date"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_resign_dep"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_resign_dep></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button
+                            mat-button
+                            matStepperNext
+                            (click)="checkDepCase()"
+                        >
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
 
-      <!-- Department Details Form -->
-      <mat-step [stepControl]="depFromGroup">
-        <form [formGroup]="depFromGroup">
-          <ng-template matStepLabel>Fill out Department Details </ng-template>
-          <div class="example-container">
-            <mat-form-field>
-              <input matInput placeholder="User name" formControlName="emp_username" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Depart name" formControlName="department_id" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_join_dep" placeholder="Joining date" formControlName="from_date"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_join_dep"></mat-datepicker-toggle>
-              <mat-datepicker #picker_join_dep></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_resign_dep" placeholder="Resign date" formControlName="to_date"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_resign_dep"></mat-datepicker-toggle>
-              <mat-datepicker #picker_resign_dep></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+            <!-- Job Details Form -->
+            <mat-step [stepControl]="jobFormGroup">
+                <form [formGroup]="jobFormGroup">
+                    <ng-template matStepLabel
+                        >Fill out Job Details
+                    </ng-template>
+                    <div class="example-container">
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="User name"
+                                formControlName="emp_username"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Job title"
+                                formControlName="title"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_join_job"
+                                placeholder="Joining date"
+                                formControlName="from_date"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_join_job"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_join_job></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_resign_job"
+                                placeholder="Resign date"
+                                formControlName="to_date"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_resign_job"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_resign_job></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
 
-       <!-- Job Details Form -->
-       <mat-step [stepControl]="jobFormGroup">
-        <form [formGroup]="jobFormGroup">
-          <ng-template matStepLabel>Fill out Job Details </ng-template>
-          <div class="example-container">
-            <mat-form-field>
-              <input matInput placeholder="User name" formControlName="emp_username" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Job title" formControlName="title" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_join_job" placeholder="Joining date" formControlName="from_date"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_join_job"></mat-datepicker-toggle>
-              <mat-datepicker #picker_join_job></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_resign_job" placeholder="Resign date" formControlName="to_date"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_resign_job"></mat-datepicker-toggle>
-              <mat-datepicker #picker_resign_job></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
+            <!-- salary Details Form -->
+            <mat-step [stepControl]="salaryFormGroup">
+                <form [formGroup]="salaryFormGroup">
+                    <ng-template matStepLabel
+                        >Fill out Salary Details
+                    </ng-template>
+                    <div class="example-container">
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="User name"
+                                formControlName="emp_username"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Salary"
+                                formControlName="salary"
+                                required
+                            />
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_join_salary"
+                                placeholder="From date"
+                                formControlName="from_date"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_join_salary"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                                #picker_join_salary
+                            ></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_resign_salary"
+                                placeholder="To date"
+                                formControlName="to_date"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_resign_salary"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker
+                                #picker_resign_salary
+                            ></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
 
-       <!-- salary Details Form -->
-       <mat-step [stepControl]="salaryFormGroup">
-        <form [formGroup]="salaryFormGroup">
-          <ng-template matStepLabel>Fill out Salary Details </ng-template>
-          <div class="example-container">
-            <mat-form-field>
-              <input matInput placeholder="User name" formControlName="emp_username" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Salary" formControlName="salary" required />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_join_salary" placeholder="From date" formControlName="from_date"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_join_salary"></mat-datepicker-toggle>
-              <mat-datepicker #picker_join_salary></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker_resign_salary" placeholder="To date" formControlName="to_date"
-                required />
-              <mat-datepicker-toggle matSuffix [for]="picker_resign_salary"></mat-datepicker-toggle>
-              <mat-datepicker #picker_resign_salary></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-
-       <!-- Final mat step -->
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        You are now done.
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper>
-  </div>
+            <!-- Final mat step -->
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                You are now done.
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
 </mat-card>
-<app-manage-employee></app-manage-employee>
-
-
-

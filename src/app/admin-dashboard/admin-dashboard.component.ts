@@ -50,8 +50,11 @@ export class AdminDashboardComponent implements OnInit {
         if ( menuItem === 'man-dep') {
           this.routes.navigate(['admindashboard', 'manage-department']);
        }
+        if ( menuItem === 'add-emp') {
+        this.routes.navigate(['admindashboard', 'add-employee']);
+     }
         if ( menuItem === 'man-emp') {
-        this.routes.navigate(['admindashboard', 'manage-employee']);
+        this.routes.navigate(['admindashboard', 'man-employee']);
      }
 
       }

@@ -1,19 +1,21 @@
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { DepartmentService } from '../services/department.service';
 import { Department } from '../models/department-model';
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-manage-department',
   templateUrl: './manage-department.component.html',
   styleUrls: ['./manage-department.component.css']
 })
-export class ManageDepartmentComponent implements OnInit {
+export class ManageDepartmentComponent implements OnInit,  OnDestroy {
 
   displayedColumns: string[] = ['sr' , 'name', 'location', 'services', 'action'];
   dataSource: MatTableDataSource<Department>;
   users: Department[] = [];
+  private dataSub = new Subscription();
   oneDepartment: Department[] = [];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -61,6 +63,10 @@ export class ManageDepartmentComponent implements OnInit {
   onDelete( id: number) {
     this.departmentService.removeDepartment(id);
     console.log('Id on Delete department ' + id);
+  }
+
+  ngOnDestroy() {
+    this.dataSub.unsubscribe();
   }
 
 }
@@ -120,6 +126,7 @@ export class DialogOverview implements OnInit {
 
     }
   }
+
   }
 
 
