@@ -1,7 +1,10 @@
+import { DepartmentService } from './../services/department.service';
+import { EmployeeSalaryDetailsService } from './../services/employee-salary-details.service';
+import { EmployeeJobDetailsService } from './../services/employee-job-details.service';
 import { EmployeeDepartmentDetailsService } from './../services/employee-department-details.service';
 import { EmployeeBankDetailsService } from './../services/employee-bank-details.service';
 import { CustomValidators } from '../custom_validators/emp_validator';
-
+import { map, startWith } from 'rxjs/operators';
 import { EmployeeDetail } from './../models/employee-details-model';
 import { EmployeeDetailsService } from '../services/employee-details.service';
 import { Component, OnInit, Inject, LOCALE_ID, OnDestroy } from '@angular/core';
@@ -12,7 +15,7 @@ import {
     FormControl,
 } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
     selector: 'app-employees',
@@ -21,6 +24,10 @@ import { Subscription } from 'rxjs';
 })
 export class EmployeesComponent implements OnInit {
     employeeDetail: EmployeeDetail[];
+    //  myControl = new FormControl();
+    options: string[] = [];
+    departmentName: string[] = [];
+    filteredOptions: Observable<string[]>;
     isLinear = false;
     employeeFormGroup: FormGroup;
     bankFormGroup: FormGroup;
@@ -29,17 +36,29 @@ export class EmployeesComponent implements OnInit {
     salaryFormGroup: FormGroup;
     username: string;
     check = false;
+    dep_id: number;
     // tslint:disable-next-line: variable-name
     constructor(
         private _formBuilder: FormBuilder,
         private employeeDetailService: EmployeeDetailsService,
         private employeeBankDetailService: EmployeeBankDetailsService,
         private employeeDepartmentService: EmployeeDepartmentDetailsService,
+        private employeeJobDetailService: EmployeeJobDetailsService,
+        private employeeSalaryDetailService: EmployeeSalaryDetailsService,
+        private departmentService: DepartmentService,
         private datePipe: DatePipe,
         private customValidator: CustomValidators
     ) {}
 
     ngOnInit() {
+        this.departmentService.getAllDepartments();
+        this.departmentService.departmentListner().subscribe(result => {
+            for (var i = 0; i < result.length; i++) {
+                this.departmentName.push(result[i].department_name);
+            }
+        });
+
+        this.options = this.departmentName;
         this.employeeDetailService.getAllEmployee();
         // employee detail form
         this.employeeFormGroup = this._formBuilder.group({
@@ -108,6 +127,26 @@ export class EmployeesComponent implements OnInit {
             this.employeeDetail = result;
             console.log(result);
         });
+
+        console.log(this.options);
+        this.filteredOptions = this.depFromGroup.controls[
+            'department_id'
+        ].valueChanges.pipe(
+            startWith(''),
+            map(value => this._filter(value))
+        );
+    }
+
+    private _filter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this.options.filter(option =>
+            option.toLowerCase().includes(filterValue)
+        );
+    }
+    onfocus() {
+        this.options;
+        console.log('yes clicked');
     }
 
     // for employee details
@@ -116,6 +155,9 @@ export class EmployeesComponent implements OnInit {
         console.log(this.employeeFormGroup);
         this.username = this.employeeFormGroup.value.emp_username;
         this.bankFormGroup.controls['emp_username'].disable();
+        this.depFromGroup.controls['emp_username'].disable();
+        this.jobFormGroup.controls['emp_username'].disable();
+        this.salaryFormGroup.controls['emp_username'].disable();
         console.log(
             this.datePipe.transform(
                 this.employeeFormGroup.value.date_of_birth,
@@ -133,6 +175,34 @@ export class EmployeesComponent implements OnInit {
     }
 
     checkDepCase() {
+        this.departmentService
+            .setDepartmentId(this.depFromGroup.value.department_id)
+            .subscribe(result => {
+                console.log('department by id' + result.depId);
+                this.dep_id = result.depId;
+            });
+        // this.employeeDetailService.addEmployee(this.employeeFormGroup);
+        // this.employeeBankDetailService.addBankDetail(
+        //     this.username,
+        //     this.bankFormGroup
+        // );
+        // this.employeeDepartmentService.addDepDetail(
+        //     this.username,
+        //     this.depFromGroup
+        // );
+    }
+    onSubmit() {
+        console.log('employee details');
+        console.log(this.employeeFormGroup);
+        console.log('bank details');
+        console.log(this.bankFormGroup);
+        console.log('department details');
+        console.log(this.depFromGroup);
+        console.log('job details');
+        console.log(this.jobFormGroup);
+        console.log('salary details');
+        console.log(this.salaryFormGroup);
+
         this.employeeDetailService.addEmployee(this.employeeFormGroup);
         this.employeeBankDetailService.addBankDetail(
             this.username,
@@ -140,12 +210,17 @@ export class EmployeesComponent implements OnInit {
         );
         this.employeeDepartmentService.addDepDetail(
             this.username,
+            this.dep_id,
             this.depFromGroup
         );
-    }
-    onSubmit() {
-        console.log(this.employeeFormGroup);
-        console.log(this.bankFormGroup);
+        this.employeeJobDetailService.addJobDetail(
+            this.username,
+            this.jobFormGroup
+        );
+        this.employeeSalaryDetailService.addSalaryDetail(
+            this.username,
+            this.salaryFormGroup
+        );
     }
 
     ValidatorUser(control: FormControl): any {

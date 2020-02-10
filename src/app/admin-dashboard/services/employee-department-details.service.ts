@@ -17,10 +17,10 @@ export class EmployeeDepartmentDetailsService {
         return this.updatedDepartmentDetails.asObservable();
     }
 
-    addDepDetail(userName: string, formData: FormGroup) {
+    addDepDetail(userName: string, dep_id: number, formData: FormGroup) {
         const bankData = {
             emp_username: userName,
-            department_id: formData.value.department_id,
+            department_id: dep_id,
             from_date: formData.value.from_date,
             to_date: formData.value.to_date,
         };

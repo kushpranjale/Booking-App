@@ -1,3 +1,4 @@
+import { CustomValidators } from './../custom_validators/emp_validator';
 import { DepartmentService } from '../services/department.service';
 import {
     FormGroup,
@@ -23,12 +24,16 @@ export class AddDepartmentComponent implements OnInit, OnChanges {
 
     constructor(
         private departmentService: DepartmentService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private customValidator: CustomValidators
     ) {}
 
     ngOnInit() {
         this.departmentGroup = new FormGroup({
-            department_name: new FormControl('', [Validators.required]),
+            department_name: new FormControl('', [
+                Validators.required,
+                // this.ValidatorUser.bind(this),
+            ]),
             location: new FormControl('', [
                 Validators.required,
                 Validators.minLength(3),
@@ -50,26 +55,28 @@ export class AddDepartmentComponent implements OnInit, OnChanges {
         if (this.departmentGroup.invalid) {
             return;
         } else {
-            this.departmentService
-                .validateDeaprtmentName(
-                    this.departmentGroup.value.department_name
-                )
-                .subscribe(result => {
-                    this.message = `${this.departmentGroup.value.department_name} ${result.message} try other departments`;
-                    this.status = result.status;
-                    console.log(`${this.message} and ${this.status} `);
-                });
-            if (this.status) {
-                this.departmentService.addDepartment(this.departmentGroup);
-                this.snackBar.open('Successfully Added', 'close', {
-                    duration: 2000,
-                });
-                formDirective.resetForm();
-                this.departmentGroup.reset();
-            } else {
-                this.dep_name = true;
-                return;
-            }
+            this.departmentService.addDepartment(this.departmentGroup);
+            this.snackBar.open('Successfully Added', 'close', {
+                duration: 2000,
+            });
+            formDirective.resetForm();
+            this.departmentGroup.reset();
         }
     }
+    // ValidatorUser(control: FormControl): any {
+    //     // this.username = control.value;
+    //     // this.customValidator.userNameValidator(control.value);
+    //     this.departmentService
+    //         .validateDeaprtmentName(control.value)
+    //         .subscribe(result => {
+    //             this.message = `${this.departmentGroup.value.department_name} ${result.message} try other departments`;
+    //             this.status = result.status;
+    //             console.log(`${this.message} and ${this.status} `);
+    //         });
+    //     if (this.status) {
+    //         return { departmentExist: true };
+    //     } else if (this.status) {
+    //         return null;
+    //     }
+    // }
 }

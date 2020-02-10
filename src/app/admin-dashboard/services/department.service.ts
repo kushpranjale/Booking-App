@@ -112,4 +112,11 @@ export class DepartmentService {
             `${this.url}get_departmentByName/${name}`
         );
     }
+
+    setDepartmentId(depName: string) {
+        console.log(depName);
+        return this.http.get<{ depId: number }>(
+            `${this.url}get_dept_employee/${depName}`
+        );
+    }
 }

@@ -16,9 +16,24 @@
                         formControlName="department_name"
                         (focus)="onChangeValue()"
                     />
-                    <mat-error>this field is required!!!</mat-error>
+                    <mat-error
+                        *ngIf="
+                            departmentGroup
+                                .get('department_name')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                    <mat-error
+                        *ngIf="
+                            departmentGroup
+                                .get('department_name')
+                                .hasError('departmentExist')
+                        "
+                        >Aready exist!!!</mat-error
+                    >
                 </mat-form-field>
-                <p
+                <!-- <p
                     *ngIf="dep_name"
                     gcontent-xio-c10=""
                     class="mat-error"
@@ -27,7 +42,7 @@
                     style="font-size: 75%; text-align: left;"
                 >
                     {{ message }}!!!
-                </p>
+                </p> -->
                 <mat-form-field>
                     <input
                         matInput

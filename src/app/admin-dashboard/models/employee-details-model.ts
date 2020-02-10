@@ -26,7 +26,7 @@ export interface EmployeeBankDetail {
 
 export interface EmployeeDepartmentDetail {
     emp_username: string;
-    department_id: string;
+    department_id: number;
     from_date: string;
     to_date: string;
 }

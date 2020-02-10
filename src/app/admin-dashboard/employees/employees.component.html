@@ -291,12 +291,31 @@
                             />
                         </mat-form-field>
                         <mat-form-field>
-                            <input
+                            <!-- <input
                                 matInput
                                 placeholder="Depart name"
                                 formControlName="department_id"
                                 required
+                            /> -->
+                            <input
+                                type="text"
+                                placeholder="Department name"
+                                aria-label="Number"
+                                matInput
+                                formControlName="department_id"
+                                [matAutocomplete]="auto"
+                                (focus)="onfocus()"
                             />
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option
+                                    *ngFor="
+                                        let option of filteredOptions | async
+                                    "
+                                    [value]="option"
+                                >
+                                    {{ option }}
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                         <mat-form-field>
                             <input
@@ -352,6 +371,7 @@
                                 matInput
                                 placeholder="User name"
                                 formControlName="emp_username"
+                                [value]="username"
                                 required
                             />
                         </mat-form-field>
@@ -411,6 +431,7 @@
                                 matInput
                                 placeholder="User name"
                                 formControlName="emp_username"
+                                [value]="username"
                                 required
                             />
                         </mat-form-field>
@@ -468,6 +489,9 @@
                 You are now done.
                 <div>
                     <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="onSubmit()">
+                        Submit
+                    </button>
                     <button mat-button (click)="stepper.reset()">Reset</button>
                 </div>
             </mat-step>
