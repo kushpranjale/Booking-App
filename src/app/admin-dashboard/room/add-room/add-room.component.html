@@ -1,0 +1,74 @@
+<div class="container">
+    <mat-card class="text-center">
+        <mat-card-title style="font-family: sans-serif;"
+            >Enter Department Deatails</mat-card-title
+        >
+        <form
+            [formGroup]="roomFormGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Room Number"
+                        formControlName="room_no"
+                    />
+                    <mat-error
+                        *ngIf="
+                            roomFormGroup.get('room_no').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Room Type"
+                        formControlName="room_type_id"
+                    />
+                    <mat-error
+                        *ngIf="
+                            roomFormGroup
+                                .get('room_type_id')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Number of persons"
+                        formControlName="no_of_people"
+                    />
+                    <mat-error
+                        *ngIf="
+                            roomFormGroup
+                                .get('no_of_people')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Room Status"
+                        formControlName="room_status"
+                    />
+                    <mat-error
+                        *ngIf="
+                            roomFormGroup
+                                .get('room_status')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary">Submit</button>
+        </form>
+    </mat-card>
+</div>

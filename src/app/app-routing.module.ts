@@ -1,3 +1,6 @@
+import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-room.component';
+import { AddRoomComponent } from './admin-dashboard/room/add-room/add-room.component';
+import { RoomTypeComponent } from './admin-dashboard/room/room-type/room-type.component';
 import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-employee/manage-employee.component';
 import { EmployeesComponent } from './admin-dashboard/employees/employees.component';
 import { ManageDepartmentComponent } from './admin-dashboard/manage-department/manage-department.component';
@@ -12,60 +15,71 @@ import { LoginDashboardComponent } from './login-dashboard/login-dashboard.compo
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
 const routes: Routes = [
-  {
-    path: '',
-    component: LoginDashboardComponent,
-    children: [
-      {
-        path: 'superadmin',
-        component: SuperLoginComponent
-      },
-      {
-        path: 'admin',
-        component: AdminLoginComponent
-      },
-      {
-        path: 'user',
-        component: UserLoginComponent
-      }
-    ]
-  },
-  {
-    path: 'superdashboard',
-    component: SuperDashboardComponent
-  },
-  {
-    path: 'admindashboard',
-    component: AdminDashboardComponent,
-    children: [
-      {
-        path : 'add-department',
-        component : AddDepartmentComponent
-      },
-      {
-       path: 'manage-department',
-       component: ManageDepartmentComponent
-      },
-      {
-        path: 'add-employee',
-        component: EmployeesComponent
-      },
-      {
-        path: 'man-employee',
-        component: ManageEmployeeComponent
-      }
-    ]
-  },
-  {
-    path: 'userdashboard',
-    component: UserDashboardComponent
-  }
+    {
+        path: '',
+        component: LoginDashboardComponent,
+        children: [
+            {
+                path: 'superadmin',
+                component: SuperLoginComponent,
+            },
+            {
+                path: 'admin',
+                component: AdminLoginComponent,
+            },
+            {
+                path: 'user',
+                component: UserLoginComponent,
+            },
+        ],
+    },
+    {
+        path: 'superdashboard',
+        component: SuperDashboardComponent,
+    },
+    {
+        path: 'admindashboard',
+        component: AdminDashboardComponent,
+        children: [
+            {
+                path: 'add-department',
+                component: AddDepartmentComponent,
+            },
+            {
+                path: 'manage-department',
+                component: ManageDepartmentComponent,
+            },
+            {
+                path: 'add-employee',
+                component: EmployeesComponent,
+            },
+            {
+                path: 'man-employee',
+                component: ManageEmployeeComponent,
+            },
+            {
+                path: 'room-type',
+                component: RoomTypeComponent,
+            },
+            {
+                path: 'add-room',
+                component: AddRoomComponent,
+            },
+            {
+                path: 'man-room',
+                component: ManageRoomComponent,
+            },
+        ],
+    },
+    {
+        path: 'userdashboard',
+        component: UserDashboardComponent,
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -47,6 +47,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeesComponent } from './admin-dashboard/employees/employees.component';
 import { DatePipe } from '@angular/common';
 import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-employee/manage-employee.component';
+import { RoomTypeComponent } from './admin-dashboard/room/room-type/room-type.component';
+import { AddRoomComponent } from './admin-dashboard/room/add-room/add-room.component';
+import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-room.component';
 
 @NgModule({
     declarations: [
@@ -63,6 +66,9 @@ import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-empl
         DialogOverview,
         EmployeesComponent,
         ManageEmployeeComponent,
+        RoomTypeComponent,
+        AddRoomComponent,
+        ManageRoomComponent,
     ],
     entryComponents: [DialogOverview],
     imports: [

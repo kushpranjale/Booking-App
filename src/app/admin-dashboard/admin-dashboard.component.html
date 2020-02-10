@@ -31,12 +31,12 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Third option
+                        Rooms
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>first of third</p>
-                <p>seccond of third</p>
-                <p>third of third</p>
+                <p (click)="onClick('room-type')">Room Types</p>
+                <p (click)="onClick('add-room')">Add Room</p>
+                <p (click)="onClick('man-room')">Manage Room</p>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-sidenav>
