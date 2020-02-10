@@ -36,9 +36,10 @@ export class EmployeesComponent implements OnInit {
     salaryFormGroup: FormGroup;
     username: string;
     check = false;
-    dep_id: number;
     // tslint:disable-next-line: variable-name
+    dep_id: number;
     constructor(
+        // tslint:disable-next-line: variable-name
         private _formBuilder: FormBuilder,
         private employeeDetailService: EmployeeDetailsService,
         private employeeBankDetailService: EmployeeBankDetailsService,
@@ -53,7 +54,8 @@ export class EmployeesComponent implements OnInit {
     ngOnInit() {
         this.departmentService.getAllDepartments();
         this.departmentService.departmentListner().subscribe(result => {
-            for (var i = 0; i < result.length; i++) {
+            // tslint:disable-next-line: prefer-for-of
+            for (let i = 0; i < result.length; i++) {
                 this.departmentName.push(result[i].department_name);
             }
         });
@@ -130,6 +132,7 @@ export class EmployeesComponent implements OnInit {
 
         console.log(this.options);
         this.filteredOptions = this.depFromGroup.controls[
+            // tslint:disable-next-line: no-string-literal
             'department_id'
         ].valueChanges.pipe(
             startWith(''),
@@ -145,7 +148,6 @@ export class EmployeesComponent implements OnInit {
         );
     }
     onfocus() {
-        this.options;
         console.log('yes clicked');
     }
 
@@ -154,9 +156,13 @@ export class EmployeesComponent implements OnInit {
         this.check = true;
         console.log(this.employeeFormGroup);
         this.username = this.employeeFormGroup.value.emp_username;
+        // tslint:disable-next-line: no-string-literal
         this.bankFormGroup.controls['emp_username'].disable();
+        // tslint:disable-next-line: no-string-literal
         this.depFromGroup.controls['emp_username'].disable();
+        // tslint:disable-next-line: no-string-literal
         this.jobFormGroup.controls['emp_username'].disable();
+        // tslint:disable-next-line: no-string-literal
         this.salaryFormGroup.controls['emp_username'].disable();
         console.log(
             this.datePipe.transform(
