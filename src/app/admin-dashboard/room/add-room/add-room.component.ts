@@ -1,3 +1,6 @@
+import { RoomType } from './../../models/room-model';
+import { MatTableDataSource } from '@angular/material';
+import { RoomTypeService } from './../../services/room-type.service';
 import {
     FormGroup,
     FormControl,
@@ -13,15 +16,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRoomComponent implements OnInit {
     roomFormGroup: FormGroup;
-    constructor() {}
+    RoomData: RoomType[] = [];
+    options: RoomType[] = [];
+    constructor(private roomTypeService: RoomTypeService) {}
 
     ngOnInit() {
+        this.roomTypeService.getAllRooms();
+        this.roomTypeService.roomTypeListener().subscribe(result => {
+            this.RoomData = result;
+            this.options = this.RoomData;
+        });
+
         this.roomFormGroup = new FormGroup({
             room_no: new FormControl('', [Validators.required]),
             room_type_id: new FormControl('', [Validators.required]),
             no_of_people: new FormControl('', [Validators.required]),
             room_status: new FormControl('', [Validators.required]),
         });
+    }
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        const filter = this.RoomData.filter(p => {
+            if (p.room_type_name.includes(filterValue)) {
+                return p.room_type_name.includes(filterValue);
+            } else {
+                return null;
+            }
+        });
+        this.options = filter;
     }
 
     onSubmit(formDirective: FormGroupDirective) {}

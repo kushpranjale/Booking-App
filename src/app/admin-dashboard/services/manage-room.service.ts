@@ -26,7 +26,7 @@ export class ManageRoomService {
         console.log(roomData);
         this.http
             .post<{ message: string; id: number }>(
-                `${this.url}add_salary`,
+                `${this.url}add_room`,
                 roomData
             )
             .subscribe(result => {
@@ -37,7 +37,7 @@ export class ManageRoomService {
             });
     }
     getAllRooms() {
-        this.http.get(`${this.url}get_salary`).subscribe((result: Rooms[]) => {
+        this.http.get(`${this.url}get_room`).subscribe((result: Rooms[]) => {
             this.roomDetails = result;
             this.updatedRoom.next([...this.roomDetails]);
         });

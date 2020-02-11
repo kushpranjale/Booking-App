@@ -41,6 +41,7 @@ export class RoomTypeComponent implements OnInit, OnDestroy {
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
         });
+        console.log(this.dataSource);
 
         this.roomFormGroup = new FormGroup({
             room_type_name: new FormControl('', [Validators.required]),
@@ -70,12 +71,21 @@ export class RoomTypeComponent implements OnInit, OnDestroy {
         // });
     }
 
-    onDelete(id: number) {
-        console.log('Id on Delete department ' + id);
+    onDelete(name: string) {
+        this.roomTypeService.removeRoom(name);
+        console.log('Id on Delete department ' + name);
     }
 
     ngOnDestroy() {
         this.dataSub.unsubscribe();
     }
-    onSubmit(formDirective: FormGroupDirective) {}
+    onSubmit(formDirective: FormGroupDirective) {
+        if (this.roomFormGroup.invalid) {
+            return;
+        } else {
+            this.roomTypeService.addRoomTypeDetail(this.roomFormGroup);
+            this.roomFormGroup.reset();
+            formDirective.resetForm();
+        }
+    }
 }
