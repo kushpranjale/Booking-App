@@ -1,3 +1,4 @@
+import { AddExtraComponent } from './admin-dashboard/AddExtra/AddExtra.component';
 import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-room.component';
 import { AddRoomComponent } from './admin-dashboard/room/add-room/add-room.component';
 import { RoomTypeComponent } from './admin-dashboard/room/room-type/room-type.component';
@@ -14,6 +15,7 @@ import { SuperLoginComponent } from './login-dashboard/super-login/super-login.c
 import { LoginDashboardComponent } from './login-dashboard/login-dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ManageextraComponent } from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
 
 const routes: Routes = [
     {
@@ -69,6 +71,14 @@ const routes: Routes = [
             {
                 path: 'man-room',
                 component: ManageRoomComponent,
+            },
+            {
+                path: 'add-extra',
+                component: AddExtraComponent,
+            },
+            {
+                path: 'man-extra',
+                component: ManageextraComponent,
             },
         ],
     },

@@ -52,6 +52,7 @@ export class AddDepartmentComponent implements OnInit, OnChanges {
     }
 
     onSubmit(formDirective: FormGroupDirective) {
+        console.log(this.departmentGroup.get('location'));
         if (this.departmentGroup.invalid) {
             return;
         } else {

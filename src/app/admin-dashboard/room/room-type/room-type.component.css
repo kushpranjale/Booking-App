@@ -46,3 +46,19 @@ mat-card {
 /* ng-container {
 margin:  auto;
 } */
+.mat-row {
+    height: auto;
+}
+
+.mat-cell {
+    padding: 8px 8px 8px 0;
+}
+.mat-cell:nth-child(even),
+.mat-header-cell:nth-child(even) {
+    color: #808080;
+}
+
+.mat-cell:nth-child(odd),
+.mat-header-cell:nth-child(odd) {
+    color: black;
+}

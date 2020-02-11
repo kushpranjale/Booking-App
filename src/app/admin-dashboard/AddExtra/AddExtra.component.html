@@ -1,0 +1,61 @@
+<div class="container">
+    <mat-card class="text-center">
+        <mat-card-title style="font-family: sans-serif;"
+            >Enter Room Deatails</mat-card-title
+        >
+        <form
+            [formGroup]="ExtraFormGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="extra type"
+                        formControlName="extra_type"
+                    />
+                    <mat-error
+                        *ngIf="
+                            ExtraFormGroup.get('extra_type').hasError(
+                                'required'
+                            )
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="extra sub type"
+                        formControlName="extra_sub_type"
+                    />
+                    <mat-error
+                        *ngIf="
+                            ExtraFormGroup.get('extra_sub_type').hasError(
+                                'required'
+                            )
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="extra charges"
+                        formControlName="extra_charge"
+                    />
+                    <mat-error
+                        *ngIf="
+                            ExtraFormGroup.get('extra_charge').hasError(
+                                'required'
+                            )
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary">Submit</button>
+        </form>
+    </mat-card>
+</div>

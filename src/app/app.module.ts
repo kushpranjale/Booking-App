@@ -1,3 +1,4 @@
+import { AddExtraComponent } from './admin-dashboard/AddExtra/AddExtra.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,6 +52,7 @@ import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-empl
 import { RoomTypeComponent } from './admin-dashboard/room/room-type/room-type.component';
 import { AddRoomComponent } from './admin-dashboard/room/add-room/add-room.component';
 import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-room.component';
+import { ManageextraComponent } from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
 
 @NgModule({
     declarations: [
@@ -66,6 +68,8 @@ import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-r
         ManageDepartmentComponent,
         DialogOverview,
         EmployeesComponent,
+        AddExtraComponent,
+        ManageextraComponent,
         ManageEmployeeComponent,
         RoomTypeComponent,
         AddRoomComponent,

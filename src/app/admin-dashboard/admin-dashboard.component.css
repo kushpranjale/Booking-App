@@ -29,12 +29,14 @@ mat-panel-title {
 p {
     cursor: pointer;
     transition-delay: 0.2s;
+
+    color: #e8e8e8;
     margin-left: 10px;
 }
 
 p:hover {
     font-weight: bold;
-
+    color: white;
     transition-timing-function: ease-in-out;
 }
 
