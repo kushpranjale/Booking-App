@@ -1,3 +1,4 @@
+import { Department } from './../models/department-model';
 import { DepartmentService } from './../services/department.service';
 import { EmployeeSalaryDetailsService } from './../services/employee-salary-details.service';
 import { EmployeeJobDetailsService } from './../services/employee-job-details.service';
@@ -25,8 +26,8 @@ import { Subscription, Observable } from 'rxjs';
 export class EmployeesComponent implements OnInit {
     employeeDetail: EmployeeDetail[];
     //  myControl = new FormControl();
-    options: string[] = [];
-    departmentName: string[] = [];
+    options: Department[] = [];
+    departments: Department[] = [];
     filteredOptions: Observable<string[]>;
     isLinear = false;
     employeeFormGroup: FormGroup;
@@ -35,6 +36,7 @@ export class EmployeesComponent implements OnInit {
     jobFormGroup: FormGroup;
     salaryFormGroup: FormGroup;
     username: string;
+    id: number;
     check = false;
     // tslint:disable-next-line: variable-name
     dep_id: number;
@@ -55,12 +57,10 @@ export class EmployeesComponent implements OnInit {
         this.departmentService.getAllDepartments();
         this.departmentService.departmentListner().subscribe(result => {
             // tslint:disable-next-line: prefer-for-of
-            for (let i = 0; i < result.length; i++) {
-                this.departmentName.push(result[i].department_name);
-            }
+            this.departments = result;
+            this.options = result;
         });
 
-        this.options = this.departmentName;
         this.employeeDetailService.getAllEmployee();
         // employee detail form
         this.employeeFormGroup = this._formBuilder.group({
@@ -131,22 +131,23 @@ export class EmployeesComponent implements OnInit {
         });
 
         console.log(this.options);
-        this.filteredOptions = this.depFromGroup.controls[
-            // tslint:disable-next-line: no-string-literal
-            'department_id'
-        ].valueChanges.pipe(
-            startWith(''),
-            map(value => this._filter(value))
-        );
+    }
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        const filter = this.departments.filter(p => {
+            if (p.department_name.includes(filterValue)) {
+                return p.department_name.includes(filterValue);
+            } else {
+                return null;
+            }
+        });
+        this.options = filter;
+    }
+    onchange(id: number) {
+        this.dep_id = id;
+        console.log(name);
     }
 
-    private _filter(value: string): string[] {
-        const filterValue = value.toLowerCase();
-
-        return this.options.filter(option =>
-            option.toLowerCase().includes(filterValue)
-        );
-    }
     onfocus() {
         console.log('yes clicked');
     }
@@ -181,12 +182,6 @@ export class EmployeesComponent implements OnInit {
     }
 
     checkDepCase() {
-        this.departmentService
-            .setDepartmentId(this.depFromGroup.value.department_id)
-            .subscribe(result => {
-                console.log('department by id' + result.depId);
-                this.dep_id = result.depId;
-            });
         // this.employeeDetailService.addEmployee(this.employeeFormGroup);
         // this.employeeBankDetailService.addBankDetail(
         //     this.username,

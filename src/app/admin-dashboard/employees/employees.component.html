@@ -299,21 +299,20 @@
                             /> -->
                             <input
                                 type="text"
-                                placeholder="Department name"
+                                placeholder="Pick one"
                                 aria-label="Number"
                                 matInput
                                 formControlName="department_id"
                                 [matAutocomplete]="auto"
-                                (focus)="onfocus()"
+                                (keyup)="applyFilter($event)"
                             />
                             <mat-autocomplete #auto="matAutocomplete">
                                 <mat-option
-                                    *ngFor="
-                                        let option of filteredOptions | async
-                                    "
-                                    [value]="option"
+                                    *ngFor="let option of options"
+                                    [value]="option.department_name"
+                                    (click)="onchange(option.department_id)"
                                 >
-                                    {{ option }}
+                                    {{ option.department_name }}
                                 </mat-option>
                             </mat-autocomplete>
                         </mat-form-field>
