@@ -1,3 +1,4 @@
+import { ManageRoomService } from './../../services/manage-room.service';
 import { RoomType } from './../../models/room-model';
 import { MatTableDataSource } from '@angular/material';
 import { RoomTypeService } from './../../services/room-type.service';
@@ -18,7 +19,11 @@ export class AddRoomComponent implements OnInit {
     roomFormGroup: FormGroup;
     RoomData: RoomType[] = [];
     options: RoomType[] = [];
-    constructor(private roomTypeService: RoomTypeService) {}
+    id: number;
+    constructor(
+        private roomTypeService: RoomTypeService,
+        private roomDetailService: ManageRoomService
+    ) {}
 
     ngOnInit() {
         this.roomTypeService.getAllRooms();
@@ -45,6 +50,16 @@ export class AddRoomComponent implements OnInit {
         });
         this.options = filter;
     }
+    onchange(id: number) {
+        this.id = id;
+        console.log(name);
+    }
 
-    onSubmit(formDirective: FormGroupDirective) {}
+    onSubmit(formDirective: FormGroupDirective) {
+        if (this.roomFormGroup.invalid) {
+            return;
+        } else {
+            this.roomDetailService.addRoomDetail(this.roomFormGroup, this.id);
+        }
+    }
 }

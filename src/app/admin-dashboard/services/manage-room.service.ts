@@ -15,10 +15,10 @@ export class ManageRoomService {
     roomListener() {
         return this.updatedRoom.asObservable();
     }
-    addRoomDetail(formData: FormGroup) {
+    addRoomDetail(formData: FormGroup, id: number) {
         const roomData = {
             room_no: formData.value.room_no,
-            room_type_id: formData.value.room_type_id,
+            room_type_id: id,
             no_of_people: formData.value.no_of_people,
             room_status: formData.value.room_status,
         };

@@ -15,6 +15,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 // importing angular material
 import {
     MatToolbarModule,
+    MatSelectModule,
     MatMenuModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -80,6 +81,7 @@ import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-r
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
+        MatSelectModule,
         MatIconModule,
         ReactiveFormsModule,
         FormsModule,

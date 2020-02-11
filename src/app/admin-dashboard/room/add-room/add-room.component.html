@@ -35,7 +35,8 @@
                     <mat-autocomplete #auto="matAutocomplete">
                         <mat-option
                             *ngFor="let option of options"
-                            [value]="option"
+                            [value]="option.room_type_name"
+                            (click)="onchange(option.room_type_id)"
                         >
                             {{ option.room_type_name }}
                         </mat-option>
@@ -65,11 +66,20 @@
                     >
                 </mat-form-field>
                 <mat-form-field>
-                    <input
+                    <!-- <input
                         matInput
                         placeholder="Room Status"
                         formControlName="room_status"
-                    />
+                    /> -->
+                    <mat-label>Status</mat-label>
+                    <select matNativeControl formControlName="room_status">
+                        <option value="Dirty">Dirty</option>
+                        <option value="Clean">Clean</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Occupied">Occupied</option>
+                        <option value="Reserved">Reserved</option>
+                        <option value="Available">Available</option>
+                    </select>
                     <mat-error
                         *ngIf="
                             roomFormGroup
