@@ -51,8 +51,14 @@ import { DatePipe } from '@angular/common';
 import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-employee/manage-employee.component';
 import { RoomTypeComponent } from './admin-dashboard/room/room-type/room-type.component';
 import { AddRoomComponent } from './admin-dashboard/room/add-room/add-room.component';
-import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-room.component';
-import { ManageextraComponent } from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
+import {
+    ManageRoomComponent,
+    DialogOverviewForRoom,
+} from './admin-dashboard/room/manage-room/manage-room.component';
+import {
+    ManageextraComponent,
+    DialogOverviewExtra,
+} from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
 
 @NgModule({
     declarations: [
@@ -67,15 +73,21 @@ import { ManageextraComponent } from './admin-dashboard/AddExtra/Manageextra/Man
         AddDepartmentComponent,
         ManageDepartmentComponent,
         DialogOverview,
+        DialogOverviewForRoom,
         EmployeesComponent,
         AddExtraComponent,
         ManageextraComponent,
         ManageEmployeeComponent,
         RoomTypeComponent,
+        DialogOverviewExtra,
         AddRoomComponent,
         ManageRoomComponent,
     ],
-    entryComponents: [DialogOverview],
+    entryComponents: [
+        DialogOverview,
+        DialogOverviewForRoom,
+        DialogOverviewExtra,
+    ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

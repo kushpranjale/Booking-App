@@ -59,7 +59,12 @@ export class AddRoomComponent implements OnInit {
         if (this.roomFormGroup.invalid) {
             return;
         } else {
-            this.roomDetailService.addRoomDetail(this.roomFormGroup, this.id);
+            console.log(this.roomFormGroup.value.room_type_id);
+            this.roomDetailService.addRoomDetail(
+                this.roomFormGroup,
+                this.id,
+                this.roomFormGroup.value.room_type_id
+            );
         }
     }
 }

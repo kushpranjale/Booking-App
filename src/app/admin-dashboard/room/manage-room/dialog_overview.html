@@ -1,4 +1,13 @@
 <div class="container">
+    <div style="text-align: end;">
+        <mat-icon
+            class="matIcon"
+            color="warn"
+            style="cursor: pointer;;"
+            (click)="onNoClick()"
+            >close</mat-icon
+        >
+    </div>
     <mat-card class="text-center">
         <mat-card-title style="font-family: sans-serif;"
             >Enter Room Deatails</mat-card-title
@@ -17,15 +26,15 @@
                     />
                     <mat-error
                         *ngIf="
-                            roomFormGroup.get('room_no').hasError('required')
-                        "
+                          roomFormGroup.get('room_no').hasError('required')
+                      "
                         >this field is required!!!</mat-error
                     >
                 </mat-form-field>
                 <mat-form-field>
                     <input
                         type="text"
-                        placeholder="Room Type"
+                        placeholder="Pick one"
                         aria-label="Number"
                         matInput
                         formControlName="room_type_id"
@@ -43,10 +52,10 @@
                     </mat-autocomplete>
                     <mat-error
                         *ngIf="
-                            roomFormGroup
-                                .get('room_type_id')
-                                .hasError('required')
-                        "
+                          roomFormGroup
+                              .get('room_type_id')
+                              .hasError('required')
+                      "
                         >this field is required!!!</mat-error
                     >
                 </mat-form-field>
@@ -58,19 +67,19 @@
                     />
                     <mat-error
                         *ngIf="
-                            roomFormGroup
-                                .get('no_of_people')
-                                .hasError('required')
-                        "
+                          roomFormGroup
+                              .get('no_of_people')
+                              .hasError('required')
+                      "
                         >this field is required!!!</mat-error
                     >
                 </mat-form-field>
                 <mat-form-field>
                     <!-- <input
-                        matInput
-                        placeholder="Room Status"
-                        formControlName="room_status"
-                    /> -->
+                      matInput
+                      placeholder="Room Status"
+                      formControlName="room_status"
+                  /> -->
                     <mat-label>Status</mat-label>
                     <select matNativeControl formControlName="room_status">
                         <option value="Dirty">Dirty</option>
@@ -82,10 +91,10 @@
                     </select>
                     <mat-error
                         *ngIf="
-                            roomFormGroup
-                                .get('room_status')
-                                .hasError('required')
-                        "
+                          roomFormGroup
+                              .get('room_status')
+                              .hasError('required')
+                      "
                         >this field is required!!!</mat-error
                     >
                 </mat-form-field>

@@ -55,4 +55,32 @@ export class ExtrasService {
             this.updatedExtras.next([...ExtraData]);
         });
     }
+    getExtra(id: number) {
+        return this.http.get(`${this.url}get_extrasById/${id}`);
+    }
+
+    updateExtra(id: number, formData: FormGroup) {
+        const extraData = {
+            extra_type: formData.value.extra_type,
+            extra_sub_type: formData.value.extra_sub_type,
+            extra_charge: formData.value.extra_charge,
+        };
+        this.http
+            .put(`${this.url}update_extra/${id}`, extraData)
+            .subscribe(result => {
+                const data = {
+                    extra_id: id,
+                    extra_type: formData.value.extra_type,
+                    extra_sub_type: formData.value.extra_sub_type,
+                    extra_charge: formData.value.extra_charge,
+                };
+                const updatedData = [...this.extrasDetails];
+                const oldIndex = updatedData.findIndex(
+                    dep => dep.extra_id === id
+                );
+                updatedData[oldIndex] = data;
+                this.extrasDetails = updatedData;
+                this.updatedExtras.next([...this.extrasDetails]);
+            });
+    }
 }
