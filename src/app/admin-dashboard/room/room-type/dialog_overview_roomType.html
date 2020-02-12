@@ -1,0 +1,55 @@
+<div class="container">
+    <div style="text-align: end;">
+        <mat-icon
+            class="matIcon"
+            color="warn"
+            style="cursor: pointer;;"
+            (click)="onNoClick()"
+            >close</mat-icon
+        >
+    </div>
+    <mat-card class="text-center">
+        <mat-card-title style="font-family: sans-serif;"
+            >Enter Room Types Details</mat-card-title
+        >
+        <form
+            [formGroup]="roomFormGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Room Type Name"
+                        formControlName="room_type_name"
+                    />
+                    <mat-error
+                        *ngIf="
+                          roomFormGroup
+                              .get('room_type_name')
+                              .hasError('required')
+                      "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Rate"
+                        formControlName="room_type_rate"
+                    />
+                    <mat-error
+                        *ngIf="
+                          roomFormGroup
+                              .get('room_type_rate')
+                              .hasError('required')
+                      "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary">Submit</button>
+        </form>
+    </mat-card>
+</div>

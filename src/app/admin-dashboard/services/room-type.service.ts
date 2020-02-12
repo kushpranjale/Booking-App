@@ -58,4 +58,30 @@ export class RoomTypeService {
                 this.updatedRoomType.next([...RoomData]);
             });
     }
+    getRoomType(name: string) {
+        return this.http.get(`${this.url}get_room_type/${name}`);
+    }
+    updateRoom(Id: number, roomTypeName: string, roomTypeRate: number) {
+        const roomData = {
+            room_type_rate: roomTypeRate,
+        };
+        console.log(roomTypeName);
+        this.http
+            .put(`${this.url}update_room_type/${roomTypeName}`, roomData)
+            .subscribe(result => {
+                const data = {
+                    room_type_id: Id,
+                    room_type_name: roomTypeName,
+                    room_type_rate: roomTypeRate,
+                };
+                console.log(data);
+                const updatedData = [...this.roomTypeDetails];
+                const oldIndex = updatedData.findIndex(
+                    dep => dep.room_type_name === roomTypeName
+                );
+                updatedData[oldIndex] = data;
+                this.roomTypeDetails = updatedData;
+                this.updatedRoomType.next([...this.roomTypeDetails]);
+            });
+    }
 }

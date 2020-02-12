@@ -49,7 +49,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeesComponent } from './admin-dashboard/employees/employees.component';
 import { DatePipe } from '@angular/common';
 import { ManageEmployeeComponent } from './admin-dashboard/employees/manage-employee/manage-employee.component';
-import { RoomTypeComponent } from './admin-dashboard/room/room-type/room-type.component';
+import {
+    RoomTypeComponent,
+    DialogOverviewRoomType,
+} from './admin-dashboard/room/room-type/room-type.component';
 import { AddRoomComponent } from './admin-dashboard/room/add-room/add-room.component';
 import {
     ManageRoomComponent,
@@ -78,6 +81,7 @@ import {
         AddExtraComponent,
         ManageextraComponent,
         ManageEmployeeComponent,
+        DialogOverviewRoomType,
         RoomTypeComponent,
         DialogOverviewExtra,
         AddRoomComponent,
@@ -87,6 +91,7 @@ import {
         DialogOverview,
         DialogOverviewForRoom,
         DialogOverviewExtra,
+        DialogOverviewRoomType,
     ],
     imports: [
         BrowserModule,
