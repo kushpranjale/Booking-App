@@ -132,20 +132,35 @@ export class EmployeesComponent implements OnInit {
 
         console.log(this.options);
     }
+    // applyFilter(event: Event) {
+    //     const filterValue = (event.target as HTMLInputElement).value;
+    //     const filter = this.departments.filter(p => {
+    //         if (p.department_name.includes(filterValue)) {
+    //             return p.department_name.includes(filterValue);
+    //         } else {
+    //             return null;
+    //         }
+    //     });
+    //     this.options = filter;
+    //     console.log(filter);
+    // }
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
+        console.log(filterValue);
         const filter = this.departments.filter(p => {
             if (p.department_name.includes(filterValue)) {
+                this.dep_id = p.department_id;
                 return p.department_name.includes(filterValue);
             } else {
                 return null;
             }
         });
         this.options = filter;
+        console.log(this.dep_id);
     }
     onchange(id: number) {
         this.dep_id = id;
-        console.log(name);
+        console.log(this.dep_id);
     }
 
     onfocus() {
@@ -157,6 +172,7 @@ export class EmployeesComponent implements OnInit {
         this.check = true;
         console.log(this.employeeFormGroup);
         this.username = this.employeeFormGroup.value.emp_username;
+
         // tslint:disable-next-line: no-string-literal
         this.bankFormGroup.controls['emp_username'].disable();
         // tslint:disable-next-line: no-string-literal
@@ -203,7 +219,6 @@ export class EmployeesComponent implements OnInit {
         console.log(this.jobFormGroup);
         console.log('salary details');
         console.log(this.salaryFormGroup);
-
         this.employeeDetailService.addEmployee(this.employeeFormGroup);
         this.employeeBankDetailService.addBankDetail(
             this.username,

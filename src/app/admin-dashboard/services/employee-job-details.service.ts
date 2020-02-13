@@ -18,7 +18,7 @@ export class EmployeeJobDetailsService {
         return this.updatedJobDetails.asObservable();
     }
 
-    addJobDetail(userName: string, formData: FormGroup) {
+    async addJobDetail(userName: string, formData: FormGroup) {
         const jobData = {
             emp_username: userName,
             title: formData.value.title,

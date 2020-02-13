@@ -62,6 +62,12 @@ import {
     ManageextraComponent,
     DialogOverviewExtra,
 } from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
+import { AddDeptManagerComponent } from './admin-dashboard/add-dept-manager/add-dept-manager.component';
+import { ManageDeptManagerComponent } from './admin-dashboard/manage-dept-manager/manage-dept-manager.component';
+import { ManageBankDetailsComponent } from './admin-dashboard/employees/manage-bank-details/manage-bank-details.component';
+import { ManageDepartmentDetailsComponent } from './admin-dashboard/employees/manage-department-details/manage-department-details.component';
+import { ManageJobDetailsComponent } from './admin-dashboard/employees/manage-job-details/manage-job-details.component';
+import { ManageSalaryDetailsComponent } from './admin-dashboard/employees/manage-salary-details/manage-salary-details.component';
 
 @NgModule({
     declarations: [
@@ -86,6 +92,12 @@ import {
         DialogOverviewExtra,
         AddRoomComponent,
         ManageRoomComponent,
+        AddDeptManagerComponent,
+        ManageDeptManagerComponent,
+        ManageBankDetailsComponent,
+        ManageDepartmentDetailsComponent,
+        ManageJobDetailsComponent,
+        ManageSalaryDetailsComponent,
     ],
     entryComponents: [
         DialogOverview,

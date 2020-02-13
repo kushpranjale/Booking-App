@@ -22,7 +22,7 @@ export class EmployeeDetailsService {
         return this.updatedEmployeeDetails.asObservable();
     }
     // Add employee details
-    addEmployee(formData: FormGroup) {
+    async addEmployee(formData: FormGroup) {
         const empData = {
             emp_username: formData.value.emp_username,
             emp_password: formData.value.emp_password,

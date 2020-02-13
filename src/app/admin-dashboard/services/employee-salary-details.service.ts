@@ -18,7 +18,7 @@ export class EmployeeSalaryDetailsService {
         return this.updatedSalaryDetails.asObservable();
     }
 
-    addSalaryDetail(userName: string, formData: FormGroup) {
+    async addSalaryDetail(userName: string, formData: FormGroup) {
         const salaryData = {
             emp_username: userName,
             salary: formData.value.salary,

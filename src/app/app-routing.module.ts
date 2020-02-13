@@ -16,6 +16,8 @@ import { LoginDashboardComponent } from './login-dashboard/login-dashboard.compo
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManageextraComponent } from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
+import { AddDeptManagerComponent } from './admin-dashboard/add-dept-manager/add-dept-manager.component';
+import { ManageDeptManagerComponent } from './admin-dashboard/manage-dept-manager/manage-dept-manager.component';
 
 const routes: Routes = [
     {
@@ -79,6 +81,14 @@ const routes: Routes = [
             {
                 path: 'man-extra',
                 component: ManageextraComponent,
+            },
+            {
+                path: 'add-dept-manager',
+                component: AddDeptManagerComponent,
+            },
+            {
+                path: 'manage-dept-manager',
+                component: ManageDeptManagerComponent,
             },
         ],
     },

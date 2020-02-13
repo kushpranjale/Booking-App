@@ -19,7 +19,7 @@ export class EmployeeBankDetailsService {
         return this.updatedBankDetails.asObservable();
     }
 
-    addBankDetail(userName: string, formData: FormGroup) {
+    async addBankDetail(userName: string, formData: FormGroup) {
         const bankData = {
             emp_username: userName,
             bank_name: formData.value.bank_name,
@@ -28,7 +28,7 @@ export class EmployeeBankDetailsService {
             IFSC_code: formData.value.IFSC_code,
             PAN_Id: formData.value.PAN_Id,
         };
-        console.log('bank data');
+        console.log('bank data  bank data');
         console.log(bankData);
         this.http
             .post<{ message: string; id: number }>(
