@@ -47,4 +47,15 @@ export class CustomerService {
     getAllCustomer(): Observable<CustomerDetail[]> {
         return this.http.get<CustomerDetail[]>(`${this.url}get_customer`);
     }
+
+    removeCustomer(username: string) {
+        this.http
+            .delete(`${this.url}remove_customer/${username}`)
+            .subscribe(result => {
+                this.updatedCustomer.next();
+            });
+    }
+    getCustomer(userName: string) {
+        return this.http.get(`${this.url}get_customer/${userName}`);
+    }
 }

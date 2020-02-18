@@ -74,7 +74,10 @@ import { ManageJobDetailsComponent } from './admin-dashboard/employees/manage-jo
 import { ManageSalaryDetailsComponent } from './admin-dashboard/employees/manage-salary-details/manage-salary-details.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { AddCustomerComponent } from './employee-dashboard/add-customer/add-customer.component';
-import { MANAGECustomerComponent } from './employee-dashboard/manage-customer/manage-customer.component';
+import {
+    MANAGECustomerComponent,
+    CustomerEditDialog,
+} from './employee-dashboard/manage-customer/manage-customer.component';
 import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
 
 @NgModule({
@@ -111,6 +114,7 @@ import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.
         AddCustomerComponent,
         MANAGECustomerComponent,
         ComplaintsComponent,
+        CustomerEditDialog,
     ],
     entryComponents: [
         DialogOverview,
@@ -118,6 +122,7 @@ import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.
         DialogOverviewExtra,
         DialogOverviewRoomType,
         ManagerDialogComponent,
+        CustomerEditDialog,
     ],
     imports: [
         BrowserModule,

@@ -1,13 +1,22 @@
 import { CustomerService } from './../services/customer.service';
 import { CustomerDetail } from './../employee-models/customer-model';
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Inject } from '@angular/core';
 import {
     MatTableDataSource,
     MatPaginator,
     MatSort,
     MatDialog,
+    MatDialogRef,
+    MAT_DIALOG_DATA,
+    MatSnackBar,
 } from '@angular/material';
 import { Subscription } from 'rxjs';
+import {
+    FormGroup,
+    FormControl,
+    Validators,
+    FormGroupDirective,
+} from '@angular/forms';
 
 @Component({
     selector: 'app-manage-customer',
@@ -67,25 +76,104 @@ export class MANAGECustomerComponent implements OnInit, OnDestroy {
         }
     }
 
-    onEdit(id: number, Username: string) {
-        console.log('Id on edit department ' + id);
-        // const dialogRef = this.dialog.open(ManagerDialogComponent, {
-        //     width: '600px',
-        //     // height: '500px',
-        //     data: { id: id, username: Username },
-        // });
-        // dialogRef.afterClosed().subscribe(result => {
-        //     console.log('The dialog was closed');
-        //     // this.animal = result;
-        // });
+    onEdit(Username: string) {
+        const dialogRef = this.dialog.open(CustomerEditDialog, {
+            width: '600px',
+            // height: '500px',
+            data: Username,
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            // this.animal = result;
+        });
     }
 
-    onDelete(id: number, username: string) {
-        // this.departmentManagerService.removeDeptManager(username, id);
-        console.log('Id on Delete department ' + id + '  ' + username);
+    onDelete(username: string) {
+        this.customerService.removeCustomer(username);
+        console.log('Id on Delete department   ' + username);
     }
 
     ngOnDestroy() {
         this.dataSub.unsubscribe();
+    }
+}
+
+@Component({
+    selector: 'app-customer-dialog',
+    templateUrl: './customer_dialog.html',
+    styleUrls: ['./manage-customer.component.css'],
+})
+// tslint:disable-next-line: component-class-suffix
+export class CustomerEditDialog implements OnInit {
+    managerData: CustomerDetail[] = [];
+    customerGroup: FormGroup;
+    id: string;
+    constructor(
+        public dialogRef: MatDialogRef<CustomerEditDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private customerService: CustomerService,
+
+        private snackBar: MatSnackBar
+    ) {}
+    ngOnInit() {
+        console.log(this.data);
+        this.customerGroup = new FormGroup({
+            cust_username: new FormControl('', [Validators.required]),
+            cust_password: new FormControl('', [Validators.required]),
+            first_name: new FormControl('', [Validators.required]),
+            last_name: new FormControl('', [Validators.required]),
+            mobile: new FormControl('', [Validators.required]),
+            fax: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required]),
+            phone: new FormControl('', [Validators.required]),
+            age: new FormControl('', [Validators.required]),
+            address: new FormControl('', [Validators.required]),
+            gender: new FormControl('', [Validators.required]),
+            kyc_type: new FormControl('', [Validators.required]),
+            kyc_number: new FormControl('', [Validators.required]),
+            kyc_proof: new FormControl('', [Validators.required]),
+            cust_type: new FormControl('', [Validators.required]),
+            nationality: new FormControl('', [Validators.required]),
+        });
+        this.customerService
+            .getCustomer(this.data)
+            .subscribe((result: CustomerDetail) => {
+                this.customerGroup.setValue({
+                    cust_username: result[0].cust_username,
+                    cust_password: result[0].cust_password,
+                    first_name: result[0].first_name,
+                    last_name: result[0].last_name,
+                    mobile: result[0].mobile,
+                    fax: result[0].fax,
+                    email: result[0].email,
+                    phone: result[0].phone,
+                    age: result[0].age,
+                    address: result[0].address,
+                    gender: result[0].gender,
+                    kyc_type: result[0].kyc_type,
+                    kyc_number: result[0].kyc_number,
+                    kyc_proof: result[0].kyc_proof,
+                    cust_type: result[0].cust_type,
+                    nationality: result[0].nationality,
+                });
+            });
+    }
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+    onSubmit(formDirective: FormGroupDirective) {
+        //     if (this.managerGroup.invalid) {
+        //         return;
+        //     } else {
+        //         this.managerService.updatedManager(
+        //             this.id,
+        //             this.data,
+        //             this.roomFormGroup.value.room_type_rate
+        //         );
+        //         console.log(this.data);
+        //         this.snackBar.open('Successfully Update', 'close', {
+        //             duration: 2000,
+        //         });
+        //         this.dialogRef.close();
     }
 }
