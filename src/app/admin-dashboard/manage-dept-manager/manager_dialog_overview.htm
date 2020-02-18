@@ -1,0 +1,79 @@
+<div class="container">
+    <mat-card class="text-center">
+        <mat-card-title style="font-family: sans-serif;"
+            >Enter Manager Details</mat-card-title
+        >
+        <form
+            [formGroup]="managerGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <mat-form-field>
+                    <input
+                        matInput
+                        type="text"
+                        placeholder="Department Name"
+                        aria-label="Number"
+                        formControlName="department_id"
+                    />
+                </mat-form-field>
+
+                <!-- <mat-form-field>
+                  <input
+                      matInput
+                      placeholder="Employee username"
+                      formControlName="emp_username"
+                  />
+                  <mat-error
+                      *ngIf="
+                          managerGroup
+                              .get('emp_username')
+                              .hasError('required')
+                      "
+                      >this field is required!!!</mat-error
+                  >
+              </mat-form-field> -->
+                <mat-form-field>
+                    <input
+                        type="text"
+                        placeholder="Employee username"
+                        aria-label="Number"
+                        matInput
+                        formControlName="emp_username"
+                    />
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input
+                        matInput
+                        [matDatepicker]="picker_join_dep"
+                        placeholder="Joining date"
+                        formControlName="from_date"
+                        required
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="picker_join_dep"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker_join_dep></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        [matDatepicker]="picker_resign_dep"
+                        placeholder="Resign date"
+                        formControlName="to_date"
+                        required
+                    />
+                    <mat-datepicker-toggle
+                        matSuffix
+                        [for]="picker_resign_dep"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker_resign_dep></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary">Submit</button>
+        </form>
+    </mat-card>
+</div>

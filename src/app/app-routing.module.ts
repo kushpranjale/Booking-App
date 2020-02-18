@@ -1,3 +1,5 @@
+import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
+import { MANAGECustomerComponent } from './employee-dashboard/manage-customer/manage-customer.component';
 import { AddExtraComponent } from './admin-dashboard/AddExtra/AddExtra.component';
 import { ManageRoomComponent } from './admin-dashboard/room/manage-room/manage-room.component';
 import { AddRoomComponent } from './admin-dashboard/room/add-room/add-room.component';
@@ -13,11 +15,13 @@ import { UserLoginComponent } from './login-dashboard/user-login/user-login.comp
 import { AdminLoginComponent } from './login-dashboard/admin-login/admin-login.component';
 import { SuperLoginComponent } from './login-dashboard/super-login/super-login.component';
 import { LoginDashboardComponent } from './login-dashboard/login-dashboard.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManageextraComponent } from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
 import { AddDeptManagerComponent } from './admin-dashboard/add-dept-manager/add-dept-manager.component';
 import { ManageDeptManagerComponent } from './admin-dashboard/manage-dept-manager/manage-dept-manager.component';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
+import { AddCustomerComponent } from './employee-dashboard/add-customer/add-customer.component';
 
 const routes: Routes = [
     {
@@ -36,6 +40,15 @@ const routes: Routes = [
                 path: 'user',
                 component: UserLoginComponent,
             },
+        ],
+    },
+    {
+        path: 'employee',
+        component: EmployeeDashboardComponent,
+        children: [
+            { path: 'add-customer', component: AddCustomerComponent },
+            { path: 'manage-customer', component: MANAGECustomerComponent },
+            { path: 'complaints', component: ComplaintsComponent },
         ],
     },
     {

@@ -43,9 +43,18 @@ export class RoomTypeComponent implements OnInit, OnDestroy {
     @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     ngOnInit() {
-        this.roomTypeService.getAllRooms();
-
-        this.roomTypeService.roomTypeListener().subscribe(result => {
+        this.roomTypeService.roomTypeListener().subscribe(() => {
+            this.getAllRoomType();
+        });
+        this.getAllRoomType();
+        this.roomFormGroup = new FormGroup({
+            room_type_name: new FormControl('', [Validators.required]),
+            room_type_rate: new FormControl('', [Validators.required]),
+        });
+    }
+    getAllRoomType() {
+        this.roomTypeService.getAllRooms().subscribe(result => {
+            this.roomTypeService.getAllRooms();
             console.log(result);
             this.users = result;
             this.dataSource = new MatTableDataSource(this.users);
@@ -53,11 +62,6 @@ export class RoomTypeComponent implements OnInit, OnDestroy {
             this.dataSource.sort = this.sort;
         });
         console.log(this.dataSource);
-
-        this.roomFormGroup = new FormGroup({
-            room_type_name: new FormControl('', [Validators.required]),
-            room_type_rate: new FormControl('', [Validators.required]),
-        });
     }
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();

@@ -63,11 +63,19 @@ import {
     DialogOverviewExtra,
 } from './admin-dashboard/AddExtra/Manageextra/Manageextra.component';
 import { AddDeptManagerComponent } from './admin-dashboard/add-dept-manager/add-dept-manager.component';
-import { ManageDeptManagerComponent } from './admin-dashboard/manage-dept-manager/manage-dept-manager.component';
+import {
+    ManageDeptManagerComponent,
+    ManagerDialogComponent,
+} from './admin-dashboard/manage-dept-manager/manage-dept-manager.component';
 import { ManageBankDetailsComponent } from './admin-dashboard/employees/manage-bank-details/manage-bank-details.component';
+// tslint:disable-next-line: max-line-length
 import { ManageDepartmentDetailsComponent } from './admin-dashboard/employees/manage-department-details/manage-department-details.component';
 import { ManageJobDetailsComponent } from './admin-dashboard/employees/manage-job-details/manage-job-details.component';
 import { ManageSalaryDetailsComponent } from './admin-dashboard/employees/manage-salary-details/manage-salary-details.component';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
+import { AddCustomerComponent } from './employee-dashboard/add-customer/add-customer.component';
+import { MANAGECustomerComponent } from './employee-dashboard/manage-customer/manage-customer.component';
+import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
 
 @NgModule({
     declarations: [
@@ -94,16 +102,22 @@ import { ManageSalaryDetailsComponent } from './admin-dashboard/employees/manage
         ManageRoomComponent,
         AddDeptManagerComponent,
         ManageDeptManagerComponent,
+        ManagerDialogComponent,
         ManageBankDetailsComponent,
         ManageDepartmentDetailsComponent,
         ManageJobDetailsComponent,
         ManageSalaryDetailsComponent,
+        EmployeeDashboardComponent,
+        AddCustomerComponent,
+        MANAGECustomerComponent,
+        ComplaintsComponent,
     ],
     entryComponents: [
         DialogOverview,
         DialogOverviewForRoom,
         DialogOverviewExtra,
         DialogOverviewRoomType,
+        ManagerDialogComponent,
     ],
     imports: [
         BrowserModule,

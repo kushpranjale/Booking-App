@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { RoomType } from '../models/room-model';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -25,26 +26,15 @@ export class RoomTypeService {
                 `${this.url}add_room_type`,
                 roomTypeData
             )
-            .subscribe(result => {
-                console.log('Room type ' + result.message);
-                console.log(result.Id);
-                // this.epm_status = result.status;
-                this.roomTypeDetails.push({
-                    room_type_id: result.Id,
-                    room_type_name: roomTypeData.room_type_name,
-                    room_type_rate: roomTypeData.room_type_rate,
-                });
-                this.updatedRoomType.next([...this.roomTypeDetails]);
-                console.log(this.roomTypeDetails);
-            });
+            .pipe(
+                tap(() => {
+                    this.updatedRoomType.next();
+                })
+            )
+            .subscribe();
     }
-    getAllRooms() {
-        this.http
-            .get(`${this.url}get_room_type`)
-            .subscribe((result: RoomType[]) => {
-                this.roomTypeDetails = result;
-                this.updatedRoomType.next([...this.roomTypeDetails]);
-            });
+    getAllRooms(): Observable<RoomType[]> {
+        return this.http.get<RoomType[]>(`${this.url}get_room_type`);
     }
 
     removeRoom(name: string) {
@@ -69,19 +59,7 @@ export class RoomTypeService {
         this.http
             .put(`${this.url}update_room_type/${roomTypeName}`, roomData)
             .subscribe(result => {
-                const data = {
-                    room_type_id: Id,
-                    room_type_name: roomTypeName,
-                    room_type_rate: roomTypeRate,
-                };
-                console.log(data);
-                const updatedData = [...this.roomTypeDetails];
-                const oldIndex = updatedData.findIndex(
-                    dep => dep.room_type_name === roomTypeName
-                );
-                updatedData[oldIndex] = data;
-                this.roomTypeDetails = updatedData;
-                this.updatedRoomType.next([...this.roomTypeDetails]);
+                this.updatedRoomType.next();
             });
     }
 }

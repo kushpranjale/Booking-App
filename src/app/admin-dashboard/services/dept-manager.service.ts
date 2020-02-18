@@ -1,8 +1,9 @@
 import { FormGroup } from '@angular/forms';
 import { DepartmentManager } from './../models/department-model';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -14,7 +15,7 @@ export class DeptManagerService {
 
     constructor(private http: HttpClient) {}
     deptManagerListener() {
-        this.updatedManager.asObservable();
+        return this.updatedManager.asObservable();
     }
 
     addDeptManager(name: string, id: number, formData: FormGroup) {
@@ -26,27 +27,30 @@ export class DeptManagerService {
         };
         this.http
             .post(`${this.url}new_manager`, ManagerData)
+            .pipe(
+                tap(() => {
+                    this.updatedManager.next();
+                })
+            )
             .subscribe(result => {
-                this.deptManager.push({
-                    emp_username: ManagerData.emp_username,
-                    department_id: id,
-                    department_name: name,
-                    from_date: ManagerData.from_date,
-                    to_date: ManagerData.to_date,
-                });
-                this.updatedManager.next([...this.deptManager]);
+                console.log(result);
             });
     }
 
-    getAllDeptManager() {
-        this.http
-            .get(
-                `${this.url}get_managers
+    getAllDeptManager(): Observable<DepartmentManager[]> {
+        return this.http.get<DepartmentManager[]>(
+            `${this.url}get_managerByName
             `
-            )
-            .subscribe((result: DepartmentManager[]) => {
-                this.deptManager = result;
-                this.updatedManager.next([...this.deptManager]);
+        );
+    }
+    removeDeptManager(username: string, Id: number) {
+        this.http
+            .delete(`${this.url}remove_manager/${username}/${Id}`)
+            .subscribe(result => {
+                this.updatedManager.next();
             });
+    }
+    getManager(userName: string) {
+        return this.http.get(`${this.url}get_manager/${userName}`);
     }
 }

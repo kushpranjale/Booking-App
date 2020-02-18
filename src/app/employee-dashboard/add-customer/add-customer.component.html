@@ -1,0 +1,222 @@
+<div class="container">
+    <mat-card class="text-center">
+        <mat-card-title style="font-family: sans-serif;"
+            >Enter Department Deatails</mat-card-title
+        >
+        <form
+            [formGroup]="customerGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Enter User Name"
+                        formControlName="cust_username"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup
+                                .get('cust_username')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Enter Password"
+                        formControlName="cust_password"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup
+                                .get('cust_password')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="First Name"
+                        formControlName="first_name"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup.get('first_name').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="last Name"
+                        formControlName="last_name"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup.get('last_name').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Mobile Number"
+                        formControlName="mobile"
+                    />
+                    <mat-error
+                        *ngIf="customerGroup.get('mobile').hasError('required')"
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Fax Number"
+                        formControlName="fax"
+                    />
+                    <mat-error
+                        *ngIf="customerGroup.get('fax').hasError('required')"
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Email id"
+                        formControlName="email"
+                    />
+                    <mat-error
+                        *ngIf="customerGroup.get('email').hasError('required')"
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Phone number"
+                        formControlName="phone"
+                    />
+                    <mat-error
+                        *ngIf="customerGroup.get('phone').hasError('required')"
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Age" formControlName="age" />
+                    <mat-error
+                        *ngIf="customerGroup.get('age').hasError('required')"
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Address"
+                        formControlName="address"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup.get('address').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <label class="example-radio-group" style="color: #7E7E7E; "
+                    >Gender</label
+                >
+                <mat-radio-group
+                    aria-label="Gender"
+                    formControlName="gender"
+                    required
+                >
+                    <div class="example-radio-button">
+                        <mat-radio-button value="Male">male</mat-radio-button>
+                        <mat-radio-button value="Female"
+                            >female</mat-radio-button
+                        >
+                        <mat-radio-button value="Other">Other</mat-radio-button>
+                    </div>
+                </mat-radio-group>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Kyc Type"
+                        formControlName="kyc_type"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup.get('kyc_type').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Kyc Number"
+                        formControlName="kyc_number"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup.get('kyc_number').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Kyc Type"
+                        formControlName="kyc_proof"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup.get('kyc_proof').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Customer
+                         Type"
+                        formControlName="cust_type"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup.get('cust_type').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Nationality
+                       Type"
+                        formControlName="nationality"
+                    />
+                    <mat-error
+                        *ngIf="
+                            customerGroup
+                                .get('nationality')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary">Submit</button>
+        </form>
+    </mat-card>
+</div>
