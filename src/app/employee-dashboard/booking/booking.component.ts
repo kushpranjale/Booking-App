@@ -16,6 +16,7 @@ export class BookingComponent implements OnInit {
     bookingFormGroup: FormGroup;
     guestFormGroup: FormGroup;
     isLinear = false;
+    list = [];
 
     constructor(private formBuilder: FormBuilder) {}
 
@@ -42,7 +43,15 @@ export class BookingComponent implements OnInit {
             nationality: new FormControl('', [Validators.required]),
             room_no: new FormControl('', [Validators.required]),
         });
+        for (let i = 0; i < 3; i++) {
+            this.list.push(i);
+        }
     }
     checkCase() {}
-    onSubmit() {}
+    onSubmit() {
+        console.log(this.bookingFormGroup);
+        for (let i = 0; i < 3; i++) {
+            console.log(this.guestFormGroup[i]);
+        }
+    }
 }

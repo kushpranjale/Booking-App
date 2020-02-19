@@ -79,7 +79,7 @@
             </mat-step>
 
             <!-- guest Details Form -->
-            <div>
+            <div *ngFor="let item of list">
                 <mat-step [stepControl]="guestFormGroup">
                     <form [formGroup]="guestFormGroup">
                         <ng-template matStepLabel
