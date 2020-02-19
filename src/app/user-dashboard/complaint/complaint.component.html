@@ -1,1 +1,32 @@
-<p>complaint works!</p>
+<mat-card>
+    <mat-card-title align="center"
+        >Complaint
+        <form
+            [formGroup]="complaintGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <!-- Department Id -->
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Enter Complaint"
+                        formControlName="department_id"
+                        (focus)="onChangeValue()"
+                    />
+                    <mat-error
+                        *ngIf="
+                            complaintGroup
+                                .get('department_id')
+                                .hasError('required')
+                        "
+                        >This Field is required
+                    </mat-error>
+                </mat-form-field>
+                <!-- Room No -->
+                <mat-form-field> </mat-form-field>
+            </div>
+        </form>
+    </mat-card-title>
+</mat-card>
