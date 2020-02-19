@@ -79,6 +79,7 @@ import {
     CustomerEditDialog,
 } from './employee-dashboard/manage-customer/manage-customer.component';
 import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
+import { BookingComponent } from './employee-dashboard/booking/booking.component';
 
 @NgModule({
     declarations: [
@@ -115,6 +116,7 @@ import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.
         MANAGECustomerComponent,
         ComplaintsComponent,
         CustomerEditDialog,
+        BookingComponent,
     ],
     entryComponents: [
         DialogOverview,

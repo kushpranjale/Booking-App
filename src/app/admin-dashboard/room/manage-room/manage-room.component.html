@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header class="mat-elevation-z1">
-        <mat-card-title>Manage Department</mat-card-title>
-        <mat-card-subtitle>Manage your departments</mat-card-subtitle>
+        <mat-card-title>Manage Rooms</mat-card-title>
+        <mat-card-subtitle>Manage your rooms</mat-card-subtitle>
     </mat-card-header>
     <mat-form-field>
         <input
@@ -51,6 +51,25 @@
                     Room status
                 </th>
                 <td mat-cell *matCellDef="let row">{{ row.room_status }}</td>
+            </ng-container>
+
+            <!-- floor Column -->
+            <ng-container matColumnDef="floor">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Floor
+                </th>
+                <td mat-cell *matCellDef="let row">{{ row.floor }}</td>
+            </ng-container>
+            <!-- pool_facing Column -->
+            <ng-container matColumnDef="pool_facing">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Pool Facing
+                </th>
+
+                <td ngi mat-cell *matCellDef="let row">
+                    <div *ngIf="row.pool_facing">yes</div>
+                    <div *ngIf="row.pool_facing == 0">No</div>
+                </td>
             </ng-container>
 
             <!-- services Column -->

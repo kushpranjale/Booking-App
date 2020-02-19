@@ -9,7 +9,7 @@ table {
 
 td,
 th {
-    width: 25%;
+    margin: auto;
 }
 .example-container {
     display: flex;

@@ -9,7 +9,8 @@ table {
 
 td,
 th {
-    width: 25%;
+    /* width: 25%; */
+    margin: auto;
 }
 .example-container {
     display: flex;
@@ -42,4 +43,30 @@ mat-card {
 .mat-cell:nth-child(odd),
 .mat-header-cell:nth-child(odd) {
     color: black;
+}
+.example-container-dialog {
+    display: flex;
+    flex-direction: row;
+}
+
+.example-container-dialog > * {
+    width: 100%;
+}
+
+#first {
+    margin-right: 5%;
+}
+.example-radio-group {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+.example-radio-button {
+    align-items: flex-start;
+    display: flex;
+}
+
+mat-radio-button {
+    margin: 5px;
 }

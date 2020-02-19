@@ -17,4 +17,6 @@ export interface RoomsData {
     room_type_name: string;
     no_of_people: number;
     room_status: string;
+    floor: string;
+    pool_facing: string;
 }

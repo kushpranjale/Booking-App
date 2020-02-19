@@ -26,8 +26,8 @@ export class AddRoomComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.roomTypeService.getAllRooms();
-        this.roomTypeService.roomTypeListener().subscribe(result => {
+        // this.roomTypeService.getAllRooms();
+        this.roomTypeService.getAllRooms().subscribe(result => {
             this.RoomData = result;
             this.options = this.RoomData;
         });
@@ -37,6 +37,8 @@ export class AddRoomComponent implements OnInit {
             room_type_id: new FormControl('', [Validators.required]),
             no_of_people: new FormControl('', [Validators.required]),
             room_status: new FormControl('', [Validators.required]),
+            floor: new FormControl('', [Validators.required]),
+            pool_facing: new FormControl('', [Validators.required]),
         });
     }
     applyFilter(event: Event) {

@@ -32,6 +32,8 @@ export class ManageRoomComponent implements OnInit, OnDestroy {
         'room_type_id',
         'no_of_people',
         'room_status',
+        'floor',
+        'pool_facing',
         'action',
     ];
     dataSource: MatTableDataSource<Rooms>;
@@ -46,9 +48,14 @@ export class ManageRoomComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        this.roomDetailService.getAllRooms();
+        this.getAllRooms();
 
         this.roomDetailService.roomListener().subscribe(result => {
+            this.getAllRooms();
+        });
+    }
+    getAllRooms() {
+        this.roomDetailService.getAllRooms().subscribe(result => {
             console.log(result);
             this.users = result;
             this.dataSource = new MatTableDataSource(this.users);

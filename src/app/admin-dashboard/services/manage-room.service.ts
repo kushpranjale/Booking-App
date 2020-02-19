@@ -1,6 +1,8 @@
+import { RoomsData } from './../models/room-model';
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Rooms, RoomsData } from '../models/room-model';
+import { Subject, Observable } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 
@@ -21,6 +23,8 @@ export class ManageRoomService {
             room_type_id: id,
             no_of_people: formData.value.no_of_people,
             room_status: formData.value.room_status,
+            floor: formData.value.floor,
+            pool_facing: formData.value.pool_facing,
         };
         console.log('salary data');
         console.log(roomData);
@@ -29,36 +33,24 @@ export class ManageRoomService {
                 `${this.url}add_room`,
                 roomData
             )
+            .pipe(
+                tap(() => {
+                    this.updatedRoom.next();
+                })
+            )
             .subscribe(result => {
                 console.log('Room type ' + result.message);
-
-                this.roomDetails.push({
-                    room_no: roomData.room_no,
-                    room_type_id: id,
-                    room_type_name: roomName,
-                    no_of_people: roomData.no_of_people,
-                    room_status: roomData.room_status,
-                });
-                this.updatedRoom.next([...this.roomDetails]);
             });
     }
-    getAllRooms() {
-        this.http
-            .get(`${this.url}get_roomByName`)
-            .subscribe((result: RoomsData[]) => {
-                this.roomDetails = result;
-                this.updatedRoom.next([...this.roomDetails]);
-            });
+    getAllRooms(): Observable<RoomsData[]> {
+        return this.http.get<RoomsData[]>(`${this.url}get_roomByName`);
     }
     removeRoom(roomNumber: string) {
         this.http
             .delete(`${this.url}remove_room/${roomNumber}`)
             .subscribe(result => {
                 console.log(result);
-                const RoomData = this.roomDetails.filter(
-                    d => d.room_no !== roomNumber
-                );
-                this.updatedRoom.next([...RoomData]);
+                this.updatedRoom.next();
             });
     }
     getRoom(roomNo: string) {
@@ -75,24 +67,13 @@ export class ManageRoomService {
         const roomData = {
             no_of_people: formData.value.no_of_people,
             room_status: formData.value.room_status,
+            floor: formData.value.floor,
+            pool_facing: formData.value.pool_facing,
         };
         this.http
             .put(`${this.url}update_room/${roomNo}`, roomData)
             .subscribe(result => {
-                const data = {
-                    room_type_id: roomTypeId,
-                    room_no: roomNo,
-                    room_type_name: roomTypeName,
-                    no_of_people: formData.value.no_of_people,
-                    room_status: formData.value.room_status,
-                };
-                const updatedData = [...this.roomDetails];
-                const oldIndex = updatedData.findIndex(
-                    dep => dep.room_no === roomNo
-                );
-                updatedData[oldIndex] = data;
-                this.roomDetails = updatedData;
-                this.updatedRoom.next([...this.roomDetails]);
+                this.updatedRoom.next();
             });
     }
 }

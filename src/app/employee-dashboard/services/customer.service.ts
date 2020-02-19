@@ -58,4 +58,34 @@ export class CustomerService {
     getCustomer(userName: string) {
         return this.http.get(`${this.url}get_customer/${userName}`);
     }
+
+    updateCustomer(username: string, formData: FormGroup) {
+        const data = {
+            first_name: formData.value.first_name,
+            last_name: formData.value.last_name,
+            mobile: formData.value.mobile,
+            fax: formData.value.fax,
+            email: formData.value.email,
+            phone: formData.value.phone,
+            age: formData.value.age,
+            address: formData.value.address,
+            gender: formData.value.gender,
+            kyc_type: formData.value.kyc_type,
+            kyc_number: formData.value.kyc_number,
+            kyc_proof: formData.value.kyc_proof,
+            cust_type: formData.value.cust_type,
+            nationality: formData.value.nationality,
+        };
+        this.http
+            .put(`${this.url}update_customer/${username}`, data)
+            .pipe(
+                tap(res => {
+                    console.log(res);
+                    this.updatedCustomer.next();
+                })
+            )
+            .subscribe(result => {
+                console.log(result);
+            });
+    }
 }

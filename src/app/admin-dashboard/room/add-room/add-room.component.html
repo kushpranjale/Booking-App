@@ -66,11 +66,6 @@
                     >
                 </mat-form-field>
                 <mat-form-field>
-                    <!-- <input
-                        matInput
-                        placeholder="Room Status"
-                        formControlName="room_status"
-                    /> -->
                     <mat-label>Status</mat-label>
                     <select matNativeControl formControlName="room_status">
                         <option value="Dirty">Dirty</option>
@@ -84,6 +79,33 @@
                         *ngIf="
                             roomFormGroup
                                 .get('room_status')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>floor</mat-label>
+                    <select matNativeControl formControlName="floor">
+                        <option value="first">First</option>
+                        <option value="second">Second</option>
+                        <option value="third">Third</option>
+                    </select>
+                    <mat-error
+                        *ngIf="roomFormGroup.get('floor').hasError('required')"
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>pool facing</mat-label>
+                    <select matNativeControl formControlName="pool_facing">
+                        <option value="1">yes</option>
+                        <option value="0">no</option>
+                    </select>
+                    <mat-error
+                        *ngIf="
+                            roomFormGroup
+                                .get('pool_facing')
                                 .hasError('required')
                         "
                         >this field is required!!!</mat-error

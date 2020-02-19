@@ -1,3 +1,4 @@
+import { BookingComponent } from './employee-dashboard/booking/booking.component';
 import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
 import { MANAGECustomerComponent } from './employee-dashboard/manage-customer/manage-customer.component';
 import { AddExtraComponent } from './admin-dashboard/AddExtra/AddExtra.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
             { path: 'add-customer', component: AddCustomerComponent },
             { path: 'manage-customer', component: MANAGECustomerComponent },
             { path: 'complaints', component: ComplaintsComponent },
+            { path: 'booking', component: BookingComponent },
         ],
     },
     {

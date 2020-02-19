@@ -78,7 +78,7 @@ export class MANAGECustomerComponent implements OnInit, OnDestroy {
 
     onEdit(Username: string) {
         const dialogRef = this.dialog.open(CustomerEditDialog, {
-            width: '600px',
+            //  width: '600px',
             // height: '500px',
             data: Username,
         });
@@ -108,6 +108,7 @@ export class CustomerEditDialog implements OnInit {
     managerData: CustomerDetail[] = [];
     customerGroup: FormGroup;
     id: string;
+
     constructor(
         public dialogRef: MatDialogRef<CustomerEditDialog>,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -118,8 +119,6 @@ export class CustomerEditDialog implements OnInit {
     ngOnInit() {
         console.log(this.data);
         this.customerGroup = new FormGroup({
-            cust_username: new FormControl('', [Validators.required]),
-            cust_password: new FormControl('', [Validators.required]),
             first_name: new FormControl('', [Validators.required]),
             last_name: new FormControl('', [Validators.required]),
             mobile: new FormControl('', [Validators.required]),
@@ -139,8 +138,6 @@ export class CustomerEditDialog implements OnInit {
             .getCustomer(this.data)
             .subscribe((result: CustomerDetail) => {
                 this.customerGroup.setValue({
-                    cust_username: result[0].cust_username,
-                    cust_password: result[0].cust_password,
                     first_name: result[0].first_name,
                     last_name: result[0].last_name,
                     mobile: result[0].mobile,
@@ -162,18 +159,15 @@ export class CustomerEditDialog implements OnInit {
         this.dialogRef.close();
     }
     onSubmit(formDirective: FormGroupDirective) {
-        //     if (this.managerGroup.invalid) {
-        //         return;
-        //     } else {
-        //         this.managerService.updatedManager(
-        //             this.id,
-        //             this.data,
-        //             this.roomFormGroup.value.room_type_rate
-        //         );
-        //         console.log(this.data);
-        //         this.snackBar.open('Successfully Update', 'close', {
-        //             duration: 2000,
-        //         });
-        //         this.dialogRef.close();
+        if (this.customerGroup.invalid) {
+            return;
+        } else {
+            this.customerService.updateCustomer(this.data, this.customerGroup);
+            console.log(this.data);
+            this.snackBar.open('Successfully Update', 'close', {
+                duration: 2000,
+            });
+            this.dialogRef.close();
+        }
     }
 }
