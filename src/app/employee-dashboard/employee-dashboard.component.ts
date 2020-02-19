@@ -49,5 +49,11 @@ export class EmployeeDashboardComponent implements OnInit {
         if (menuItem === 'complaints') {
             this.routes.navigate(['employee', 'complaints']);
         }
+        if (menuItem === 'complaints') {
+            this.routes.navigate(['employee', 'complaints']);
+        }
+        if (menuItem === 'booking') {
+            this.routes.navigate(['employee', 'booking']);
+        }
     }
 }
