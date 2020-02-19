@@ -80,6 +80,7 @@ import {
 } from './employee-dashboard/manage-customer/manage-customer.component';
 import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
 import { BookingComponent } from './employee-dashboard/booking/booking.component';
+import { ReviewComponent } from './employee-dashboard/review/review.component';
 
 @NgModule({
     declarations: [
@@ -117,6 +118,7 @@ import { BookingComponent } from './employee-dashboard/booking/booking.component
         ComplaintsComponent,
         CustomerEditDialog,
         BookingComponent,
+        ReviewComponent,
     ],
     entryComponents: [
         DialogOverview,
