@@ -28,8 +28,8 @@ export class ComplaintsComponent implements OnInit, OnDestroy {
     users: ComplaintDetail[] = [];
     private dataSub = new Subscription();
 
-    @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-    @ViewChild(MatSort, { static: false }) sort: MatSort;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     constructor(
         private complaintService: ComplaintService,
