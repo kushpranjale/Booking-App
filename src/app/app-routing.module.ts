@@ -1,3 +1,4 @@
+import { ReviewComponents } from './user-dashboard/review/review.component';
 import { ReviewComponent } from './employee-dashboard/review/review.component';
 import { BookingComponent } from './employee-dashboard/booking/booking.component';
 import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
@@ -24,6 +25,7 @@ import { AddDeptManagerComponent } from './admin-dashboard/add-dept-manager/add-
 import { ManageDeptManagerComponent } from './admin-dashboard/manage-dept-manager/manage-dept-manager.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { AddCustomerComponent } from './employee-dashboard/add-customer/add-customer.component';
+import { ComplaintComponent } from './user-dashboard/complaint/complaint.component';
 
 const routes: Routes = [
     {
@@ -112,6 +114,16 @@ const routes: Routes = [
     {
         path: 'userdashboard',
         component: UserDashboardComponent,
+        children: [
+            {
+                path: 'complaints',
+                component: ComplaintComponent,
+            },
+            {
+                path: 'review',
+                component: ReviewComponents,
+            },
+        ],
     },
 ];
 

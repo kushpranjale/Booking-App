@@ -1,3 +1,4 @@
+import { ReviewComponents } from './user-dashboard/review/review.component';
 import { AddExtraComponent } from './admin-dashboard/AddExtra/AddExtra.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -81,6 +82,7 @@ import {
 import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.component';
 import { BookingComponent } from './employee-dashboard/booking/booking.component';
 import { ReviewComponent } from './employee-dashboard/review/review.component';
+import { ComplaintComponent } from './user-dashboard/complaint/complaint.component';
 
 @NgModule({
     declarations: [
@@ -119,6 +121,8 @@ import { ReviewComponent } from './employee-dashboard/review/review.component';
         CustomerEditDialog,
         BookingComponent,
         ReviewComponent,
+        ComplaintComponent,
+        ReviewComponents,
     ],
     entryComponents: [
         DialogOverview,

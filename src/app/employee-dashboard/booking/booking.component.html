@@ -1,1 +1,209 @@
-<p>booking works!</p>
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{ !isLinear ? 'Enable linear mode' : 'Disable linear mode' }}
+</button>
+<mat-card>
+    <div>
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <!-- booking Details Form -->
+            <mat-step [stepControl]="bookingFormGroup">
+                <form [formGroup]="bookingFormGroup">
+                    <ng-template matStepLabel
+                        >Fill out booking details</ng-template
+                    >
+                    <div class="example-container">
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Customer User Name"
+                                formControlName="cust_username"
+                                required
+                            />
+                            <mat-error
+                                *ngIf="
+                                    bookingFormGroup
+                                        .get('cust_username')
+                                        .hasError('required')
+                                "
+                                >this field is required!!!</mat-error
+                            >
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Adult Count"
+                                formControlName="adult_count"
+                                required
+                            /> </mat-form-field
+                        >.
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Child Count"
+                                formControlName="child_count"
+                                required
+                            />
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input
+                                matInput
+                                [matDatepicker]="picker_birth"
+                                placeholder="Date of booking"
+                                formControlName="book_time"
+                                required
+                            />
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="picker_birth"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #picker_birth></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input
+                                matInput
+                                placeholder="Booking Status"
+                                formControlName="booking_status"
+                                required
+                            />
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <button mat-button matStepperNext (click)="checkCase()">
+                            Next
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <!-- guest Details Form -->
+            <div>
+                <mat-step [stepControl]="guestFormGroup">
+                    <form [formGroup]="guestFormGroup">
+                        <ng-template matStepLabel
+                            >Fill out guest Details
+                        </ng-template>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="User name"
+                                    formControlName="cust_username"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Guest User Name"
+                                    formControlName="guest_username"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="First Name"
+                                    formControlName="first_name"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Last Name"
+                                    formControlName="last_name"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Mobile number"
+                                    formControlName="mobile"
+                                    required
+                                />
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Email Id"
+                                    formControlName="email"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Age"
+                                    formControlName="age"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Gender"
+                                    formControlName="gender"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Kyc Type"
+                                    formControlName="kyc_type"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Kyc number"
+                                    formControlName="kyc_number"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Nationality"
+                                    formControlName="nationality"
+                                    required
+                                />
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input
+                                    matInput
+                                    placeholder="Room Number"
+                                    formControlName="room_no"
+                                    required
+                                />
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>
+                                Next
+                            </button>
+                        </div>
+                    </form>
+                </mat-step>
+            </div>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                You are now done.
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="onSubmit()">
+                        Submit
+                    </button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div></mat-card
+>

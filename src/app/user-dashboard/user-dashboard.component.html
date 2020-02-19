@@ -1,1 +1,85 @@
-<p>user-dashboard works!</p>
+<mat-sidenav-container class="example-container ">
+    <mat-sidenav
+        class="mat-elevation-z10"
+        #sidenav
+        [mode]="mod"
+        [(opened)]="open"
+        style="background:  #3f51b5;"
+    >
+        <mat-card
+            style="background-color:#3f51b5; color: #fff; cursor: pointer; "
+            [routerLink]="['/userdashboard']"
+        >
+            <mat-icon [inline]="true">home</mat-icon>
+            Home</mat-card
+        >
+        <mat-accordion multi="true">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        First
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p (click)="onClick('add-customer')">Add customers</p>
+                <p (click)="onClick('manage-customer')">Manage customers</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Second
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p (click)="onClick('add-emp')">Second</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Booking
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p (click)="onClick('booking')">Book Customer</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Complaints
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p (click)="onClick('complaints')">customer's complaints</p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Review
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p (click)="onClick('review')">customer's review</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar
+            class="mat-elevation-z10"
+            style="width: 100% !important;"
+            color="primary"
+        >
+            <p
+                *ngIf="menue"
+                style="text-align: end; color: white; font-size: 60px;"
+            >
+                <button mat-button (click)="sidenav.toggle()">
+                    <mat-icon>menue</mat-icon>
+                </button>
+            </p>
+
+            Dashboard
+            <span class="spacer"> </span>
+
+            <button mat-raised-button color="primary" id="logout">
+                Login out <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
