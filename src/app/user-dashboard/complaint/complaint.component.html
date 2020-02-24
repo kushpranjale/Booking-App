@@ -1,32 +1,83 @@
 <mat-card>
-    <mat-card-title align="center"
-        >Complaint
-        <form
-            [formGroup]="complaintGroup"
-            (ngSubmit)="onSubmit(formDirective)"
-            #formDirective="ngForm"
-        >
-            <div class="example-container">
-                <!-- Department Id -->
-                <mat-form-field>
-                    <input
-                        matInput
-                        placeholder="Enter Complaint"
-                        formControlName="department_id"
-                        (focus)="onChangeValue()"
-                    />
-                    <mat-error
-                        *ngIf="
-                            complaintGroup
-                                .get('department_id')
-                                .hasError('required')
-                        "
-                        >This Field is required
-                    </mat-error>
-                </mat-form-field>
-                <!-- Room No -->
-                <mat-form-field> </mat-form-field>
-            </div>
-        </form>
-    </mat-card-title>
+    <mat-card-title align="center">Complaint</mat-card-title>
+    <form
+        [formGroup]="complaintGroup"
+        (ngSubmit)="onSubmit(formDirective)"
+        #formDirective="ngForm"
+    >
+        <div class="example-container">
+            <!-- Department Id -->
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Department ID"
+                    formControlName="department_id"
+                    (focus)="onChangeValue()"
+                />
+                <mat-error
+                    *ngIf="
+                        complaintGroup.get('department_id').hasError('required')
+                    "
+                    >This Field Is Required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Room No -->
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Room No"
+                    formControlName="room_no"
+                />
+                <mat-error
+                    *ngIf="complaintGroup.get('room_no').hasError('required')"
+                >
+                    This Field Is Required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Complaint Status -->
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Status"
+                    formControlName="complaint_status"
+                />
+                <mat-error
+                    *ngIf="
+                        complaintGroup
+                            .get('complaint_status')
+                            .hasError('required')
+                    "
+                >
+                    This Field is required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Customer Review -->
+            <mat-form-field>
+                <!-- <input
+                    matInput
+                    placeholder="Review"
+                    formControlName="customer_review"
+                /> -->
+                <textarea
+                    matInput
+                    placeholder="Review"
+                    formControlName="customer_review"
+                ></textarea>
+                <mat-error
+                    *ngIf="
+                        complaintGroup
+                            .get('customer_review')
+                            .hasError('required')
+                    "
+                >
+                    This Field is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary">Submit</button>
+    </form>
 </mat-card>

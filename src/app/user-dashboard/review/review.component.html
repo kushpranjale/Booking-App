@@ -1,0 +1,82 @@
+<mat-card>
+    <mat-card-title align="center">Review</mat-card-title>
+    <form
+        [formGroup]="reviewGroup"
+        (ngSubmit)="onSubmit(formDirective)"
+        #formDirective="ngForm"
+    >
+        <div class="example-container">
+            <!-- Customer Username -->
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Customer UserName"
+                    formControlName="cust_username"
+                    (focus)="onChangeValue()"
+                />
+                <mat-error
+                    *ngIf="
+                        reviewGroup.get('cust_username').hasError('required')
+                    "
+                    >This Field Is Required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Guest UserName -->
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Guest UserName"
+                    formControlName="guest_username"
+                />
+                <mat-error
+                    *ngIf="
+                        reviewGroup.get('guest_username').hasError('required')
+                    "
+                    >This Field Is Required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Review -->
+            <mat-form-field>
+                <!-- <input
+                    matInput
+                    placeholder="Review"
+                    formControlName="review"
+                /> -->
+                <textarea
+                    matInput
+                    placeholder="Review"
+                    formControlName="review"
+                ></textarea>
+                <mat-error *ngIf="reviewGroup.get('review')"
+                    >This Field Is Required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Department ID -->
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Department ID"
+                    formControlName="department_id"
+                />
+                <mat-error
+                    *ngIf="
+                        reviewGroup.get('department_id').hasError('required')
+                    "
+                    >This Field Is Required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Rating -->
+            <mat-form-field>
+                <input matInput placeholder="Rating" formControlName="rating" />
+                <mat-error *ngIf="reviewGroup.get('rating')"
+                    >This Field Is Required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">Submit</button>
+    </form>
+</mat-card>
