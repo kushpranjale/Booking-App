@@ -17,7 +17,8 @@ import { Subscription } from 'rxjs';
 export class ComplaintsComponent implements OnInit, OnDestroy {
     displayedColumns: string[] = [
         'sr',
-        'department_id',
+        'complaint_id',
+        'department_name',
         'room_no',
         'complaint_time',
         'complaint_status',

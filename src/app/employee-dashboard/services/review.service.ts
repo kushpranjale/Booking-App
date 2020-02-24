@@ -19,7 +19,7 @@ export class ReviewService {
 
     // GET all reviews
     getAllReviews(): Observable<ReviewDetail[]> {
-        return this.http.get<ReviewDetail[]>(`${this.url}get_reviews`);
+        return this.http.get<ReviewDetail[]>(`${this.url}get_reviewByName`);
     }
 
     // DELETE reviews by cust_username AND guest_username

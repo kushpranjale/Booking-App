@@ -20,7 +20,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
         'cust_username',
         'guest_username',
         'review',
-        'department_id',
+        'department_name',
         'rating',
         'action',
     ];

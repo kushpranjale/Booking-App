@@ -40,6 +40,16 @@
                     </td>
                 </ng-container>
 
+                <!-- Department Name -->
+                <ng-container matColumnDef="department_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Department Name
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        {{ row.department_name }}
+                    </td>
+                </ng-container>
+
                 <!-- Room No -->
                 <ng-container matColumnDef="room_no">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>

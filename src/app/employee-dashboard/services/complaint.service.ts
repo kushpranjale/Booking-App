@@ -22,7 +22,9 @@ export class ComplaintService {
 
     // GET all complaints
     getAllComplaint(): Observable<ComplaintDetail[]> {
-        return this.http.get<ComplaintDetail[]>(`${this.url}get_complaints`);
+        return this.http.get<ComplaintDetail[]>(
+            `${this.url}get_complaintByName`
+        );
     }
 
     // GET complaint by department_id
