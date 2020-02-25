@@ -13,41 +13,75 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true">location_city</mat-icon>
                         Department
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('department')">Add Department</p>
-                <p (click)="onClick('man-dep')">Manage Department</p>
-                <p (click)="onClick('add-dept-manager')">Add Managers</p>
-                <p (click)="onClick('manage-dept-manager')">Manage Managers</p>
+                <p (click)="onClick('department')">
+                    <mat-icon [inline]="true">add_circle_outline</mat-icon>Add
+                    Department
+                </p>
+                <p (click)="onClick('man-dep')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon>Manage
+                    Department
+                </p>
+                <p (click)="onClick('add-dept-manager')">
+                    <mat-icon [inline]="true">person_add</mat-icon> Managers
+                </p>
+                <p (click)="onClick('manage-dept-manager')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon>Manage
+                    Managers
+                </p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true">group</mat-icon>
                         Employees
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('add-emp')">Add employee</p>
-                <p (click)="onClick('man-emp')">Manage employee</p>
+                <p (click)="onClick('add-emp')">
+                    <mat-icon [inline]="true">person_add</mat-icon> Add employee
+                </p>
+                <p (click)="onClick('man-emp')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon>Manage
+                    employee
+                </p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true"
+                            >store_mall_directory</mat-icon
+                        >
                         Rooms
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('room-type')">Room Types</p>
-                <p (click)="onClick('add-room')">Add Room</p>
-                <p (click)="onClick('man-room')">Manage Room</p>
+                <p (click)="onClick('room-type')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon>Room Types
+                </p>
+                <p (click)="onClick('add-room')">
+                    <mat-icon [inline]="true">add_circle_outline</mat-icon>Add
+                    Room
+                </p>
+                <p (click)="onClick('man-room')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon>Manage Room
+                </p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true">playlist_add_check</mat-icon>
                         Extras
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('add-extra')">Add Extras</p>
-                <p (click)="onClick('man-extra')">Manage Extras</p>
+                <p (click)="onClick('add-extra')">
+                    <mat-icon [inline]="true">add_circle_outline</mat-icon>Add
+                    Extras
+                </p>
+                <p (click)="onClick('man-extra')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon>Manage Extras
+                </p>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-sidenav>
@@ -63,7 +97,7 @@
                 style="text-align: end; color: white; font-size: 60px;"
             >
                 <button mat-button (click)="sidenav.toggle()">
-                    <mat-icon>menue</mat-icon>
+                    <mat-icon>menu</mat-icon>
                 </button>
             </p>
 

@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    ViewChild,
+    ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { EmployeeBankDetail } from '../../models/employee-details-model';
 import { EmployeeBankDetailsService } from '../../services/employee-bank-details.service';
@@ -7,6 +12,7 @@ import { EmployeeBankDetailsService } from '../../services/employee-bank-details
     selector: 'app-manage-bank-details',
     templateUrl: './manage-bank-details.component.html',
     styleUrls: ['./manage-bank-details.component.css'],
+    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManageBankDetailsComponent implements OnInit {
     bankUser: EmployeeBankDetail[] = [];

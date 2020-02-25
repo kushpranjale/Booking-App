@@ -49,3 +49,6 @@ p:hover {
     width: auto;
   }
 } */
+mat-icon {
+    margin-right: 6px;
+}

@@ -3,7 +3,7 @@ import { CustomerDetail } from '../employee-models/customer-model';
 import { Subject, Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, filter } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -38,7 +38,8 @@ export class CustomerService {
         this.http
             .post(`${this.url}new_customer`, data)
             .pipe(
-                tap(() => {
+                tap(result => {
+                    console.log(result);
                     this.updatedCustomer.next();
                 })
             )

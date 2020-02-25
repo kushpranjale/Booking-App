@@ -17,36 +17,53 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true">person_outline</mat-icon>
                         Customer
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('add-customer')">Add customers</p>
-                <p (click)="onClick('manage-customer')">Manage customers</p>
+                <p (click)="onClick('add-customer')">
+                    <mat-icon [inline]="true">person_add</mat-icon> Add
+                    customers
+                </p>
+                <p (click)="onClick('manage-customer')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon> customers
+                </p>
             </mat-expansion-panel>
 
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true">add_to_photos</mat-icon>
                         Booking
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('booking')">Book Customer</p>
+                <p (click)="onClick('booking')">
+                    <mat-icon [inline]="true">mode_edit</mat-icon> Book Customer
+                </p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true">book</mat-icon>
                         Complaints
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('complaints')">customer's complaints</p>
+                <p (click)="onClick('complaints')">
+                    <mat-icon [inline]="true">visibility</mat-icon>
+                    customer's complaints
+                </p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
+                        <mat-icon [inline]="true">rate_review</mat-icon>
                         Review
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="onClick('review')">customer's review</p>
+                <p (click)="onClick('review')">
+                    <mat-icon [inline]="true">visibility</mat-icon>customer's
+                    review
+                </p>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-sidenav>
