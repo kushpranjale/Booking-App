@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {
     FormGroup,
-    FormGroupDirective,
-    FormBuilder,
     FormControl,
     Validators,
+    FormGroupDirective,
 } from '@angular/forms';
+import { BookingService } from '../services/booking.service';
 
 @Component({
     selector: 'app-booking',
@@ -14,44 +15,34 @@ import {
 })
 export class BookingComponent implements OnInit {
     bookingFormGroup: FormGroup;
-    guestFormGroup: FormGroup;
-    isLinear = false;
-    list = [];
+    adultCount: number;
+    childCount: number;
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(
+        private routes: Router,
+        private bookingService: BookingService
+    ) {}
 
     ngOnInit() {
-        this.bookingFormGroup = this.formBuilder.group({
+        this.bookingFormGroup = new FormGroup({
             cust_username: new FormControl('', [Validators.required]),
-            child_count: new FormControl('', [Validators.required]),
-            book_time: new FormControl('', [Validators.required]),
             adult_count: new FormControl('', [Validators.required]),
+            child_count: new FormControl('', [Validators.required]),
+            booking_time: new FormControl('', [Validators.required]),
             booking_status: new FormControl('', [Validators.required]),
         });
-        this.guestFormGroup = this.formBuilder.group({
-            cust_username: new FormControl('', [Validators.required]),
-            guest_username: new FormControl('', [Validators.required]),
-            first_name: new FormControl('', [Validators.required]),
-            last_name: new FormControl('', [Validators.required]),
-            mobile: new FormControl('', [Validators.required]),
-            email: new FormControl('', [Validators.required]),
-            age: new FormControl('', [Validators.required]),
-            gender: new FormControl('', [Validators.required]),
-            kyc_type: new FormControl('', [Validators.required]),
-            kyc_number: new FormControl('', [Validators.required]),
-            kyc_proof: new FormControl('', [Validators.required]),
-            nationality: new FormControl('', [Validators.required]),
-            room_no: new FormControl('', [Validators.required]),
-        });
-        for (let i = 0; i < 3; i++) {
-            this.list.push(i);
-        }
     }
-    checkCase() {}
-    onSubmit() {
-        console.log(this.bookingFormGroup);
-        for (let i = 0; i < 3; i++) {
-            console.log(this.guestFormGroup[i]);
+    onSubmit(formDirective: FormGroupDirective) {
+        if (this.bookingFormGroup.invalid) {
+            return;
+        } else {
+            this.adultCount = +this.bookingFormGroup.value.adult_count;
+            this.childCount = +this.bookingFormGroup.value.child_count;
+            this.bookingService.adultCount = this.adultCount + this.childCount;
+            this.bookingService.customerUserName = this.bookingFormGroup.value.cust_username;
+            this.bookingService.addBooking(this.bookingFormGroup);
+            console.log(this.bookingFormGroup);
+            this.routes.navigate(['employee', 'add-guest']);
         }
     }
 }

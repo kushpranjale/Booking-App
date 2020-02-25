@@ -169,6 +169,7 @@ export class EmployeesComponent implements OnInit {
 
     // for employee details
     checkCase() {
+        this.employeeDetailService.addEmployee(this.employeeFormGroup);
         this.check = true;
         console.log(this.employeeFormGroup);
         this.username = this.employeeFormGroup.value.emp_username;
@@ -219,7 +220,7 @@ export class EmployeesComponent implements OnInit {
         console.log(this.jobFormGroup);
         console.log('salary details');
         console.log(this.salaryFormGroup);
-        this.employeeDetailService.addEmployee(this.employeeFormGroup);
+
         this.employeeBankDetailService.addBankDetail(
             this.username,
             this.bankFormGroup

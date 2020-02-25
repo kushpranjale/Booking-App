@@ -1,194 +1,89 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-    {{ !isLinear ? 'Enable linear mode' : 'Disable linear mode' }}
-</button>
 <mat-card>
-    <div>
-        <mat-horizontal-stepper [linear]="isLinear" #stepper>
-            <!-- booking Details Form -->
-            <mat-step [stepControl]="bookingFormGroup">
-                <form [formGroup]="bookingFormGroup">
-                    <ng-template matStepLabel
-                        >Fill out booking details</ng-template
-                    >
-                    <div class="example-container">
-                        <mat-form-field>
-                            <input
-                                matInput
-                                placeholder="Customer User Name"
-                                formControlName="cust_username"
-                                required
-                            />
-                            <mat-error
-                                *ngIf="
-                                    bookingFormGroup
-                                        .get('cust_username')
-                                        .hasError('required')
-                                "
-                                >this field is required!!!</mat-error
-                            >
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <input
-                                matInput
-                                placeholder="Adult Count"
-                                formControlName="adult_count"
-                                required
-                            /> </mat-form-field
-                        >.
-                        <mat-form-field>
-                            <input
-                                matInput
-                                placeholder="Child Count"
-                                formControlName="child_count"
-                                required
-                            />
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <input
-                                matInput
-                                [matDatepicker]="picker_birth"
-                                placeholder="Date of booking"
-                                formControlName="book_time"
-                                required
-                            />
-                            <mat-datepicker-toggle
-                                matSuffix
-                                [for]="picker_birth"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #picker_birth></mat-datepicker>
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <input
-                                matInput
-                                placeholder="Booking Status"
-                                formControlName="booking_status"
-                                required
-                            />
-                        </mat-form-field>
-                    </div>
-
-                    <div>
-                        <button mat-button matStepperNext (click)="checkCase()">
-                            Next
-                        </button>
-                    </div>
-                </form>
-            </mat-step>
-
-            <!-- guest Details Form -->
-            <div *ngFor="let item of list">
-                <mat-step [stepControl]="guestFormGroup">
-                    <form [formGroup]="guestFormGroup">
-                        <ng-template matStepLabel
-                            >Fill out guest Details
-                        </ng-template>
-                        <div class="example-container">
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="User name"
-                                    formControlName="cust_username"
-                                    required
-                                />
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Guest User Name"
-                                    formControlName="guest_username"
-                                    required
-                                />
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Guest age"
-                                    formControlName="guest_age"
-                                    required
-                                />
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Room Type"
-                                    formControlName="room_type_id"
-                                    required
-                                />
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Room Number"
-                                    formControlName="room_no"
-                                    required
-                                />
-                            </mat-form-field>
-
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Adult count"
-                                    formControlName="room_adult_count"
-                                    required
-                                />
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Child count"
-                                    formControlName="room_child_count"
-                                    required
-                                />
-                            </mat-form-field>
-
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Kyc Type"
-                                    formControlName="kyc_type"
-                                    required
-                                />
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="Kyc number"
-                                    formControlName="kyc_number"
-                                    required
-                                />
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input
-                                    matInput
-                                    placeholder="kyc proof"
-                                    formControlName="kyc_proof"
-                                    required
-                                />
-                            </mat-form-field>
-                        </div>
-                        <div>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <button mat-button matStepperNext>
-                                Next
-                            </button>
-                        </div>
-                    </form>
-                </mat-step>
-            </div>
-            <mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                You are now done.
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext (click)="onSubmit()">
-                        Submit
-                    </button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
-                </div>
-            </mat-step>
-        </mat-horizontal-stepper>
-    </div></mat-card
+    <form
+        [formGroup]="bookingFormGroup"
+        (ngSubmit)="onSubmit(formDirective)"
+        #formDirective="ngForm"
+    >
+        <div class="example-container">
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Enter User Name"
+                    formControlName="cust_username"
+                />
+                <mat-error
+                    *ngIf="
+                        bookingFormGroup
+                            .get('cust_username')
+                            .hasError('required')
+                    "
+                    >this field is required!!!</mat-error
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Enter Adult Count"
+                    formControlName="adult_count"
+                />
+                <mat-error
+                    *ngIf="
+                        bookingFormGroup.get('adult_count').hasError('required')
+                    "
+                    >this field is required!!!</mat-error
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="Enter Child Count"
+                    formControlName="child_count"
+                />
+                <mat-error
+                    *ngIf="
+                        bookingFormGroup.get('child_count').hasError('required')
+                    "
+                    >this field is required!!!</mat-error
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    matInput
+                    [matDatepicker]="picker_resign_salary"
+                    placeholder="booking date"
+                    formControlName="booking_time"
+                    required
+                />
+                <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker_resign_salary"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker_resign_salary></mat-datepicker>
+                <mat-error
+                    *ngIf="
+                        bookingFormGroup
+                            .get('booking_time')
+                            .hasError('required')
+                    "
+                    >this field is required!!!</mat-error
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                    matInput
+                    placeholder="booking status"
+                    formControlName="booking_status"
+                />
+                <mat-error
+                    *ngIf="
+                        bookingFormGroup
+                            .get('booking_status')
+                            .hasError('required')
+                    "
+                    >this field is required!!!</mat-error
+                >
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">Submit</button>
+    </form></mat-card
 >

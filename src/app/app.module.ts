@@ -83,6 +83,7 @@ import { ComplaintsComponent } from './employee-dashboard/complaints/complaints.
 import { BookingComponent } from './employee-dashboard/booking/booking.component';
 import { ReviewComponent } from './employee-dashboard/review/review.component';
 import { ComplaintComponent } from './user-dashboard/complaint/complaint.component';
+import { AddGuestComponent } from './employee-dashboard/booking/add-guest/add-guest.component';
 
 @NgModule({
     declarations: [
@@ -123,6 +124,7 @@ import { ComplaintComponent } from './user-dashboard/complaint/complaint.compone
         ReviewComponent,
         ComplaintComponent,
         ReviewComponents,
+        AddGuestComponent,
     ],
     entryComponents: [
         DialogOverview,

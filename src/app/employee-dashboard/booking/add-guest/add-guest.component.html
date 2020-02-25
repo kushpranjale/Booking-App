@@ -1,0 +1,202 @@
+<div *ngIf="remaining > 0; else elseBlock">
+    <mat-card>
+        <p style="color: green;">Remaining Guest: {{ remaining }}</p></mat-card
+    >
+
+    <mat-card>
+        <form
+            [formGroup]="guestFormGroup"
+            (ngSubmit)="onSubmit(formDirective)"
+            #formDirective="ngForm"
+        >
+            <div class="example-container">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Enter User Name"
+                        disabled
+                        [value]="username"
+                    />
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Guest username"
+                        formControlName="guest_username"
+                    />
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup
+                                .get('guest_username')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Guest Age"
+                        formControlName="guest_age"
+                    />
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup.get('guest_age').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <!-- <input
+                        matInput
+                        placeholder="Room Type"
+                        formControlName="room_type_id"
+                    /> -->
+                    <input
+                        type="text"
+                        placeholder="Room Type"
+                        aria-label="Number"
+                        matInput
+                        formControlName="room_type_id"
+                        [matAutocomplete]="auto"
+                        (keyup)="applyFilter($event)"
+                    />
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option
+                            *ngFor="let option of options"
+                            [value]="option.room_type_name"
+                            (click)="onchange(option.room_type_id)"
+                        >
+                            {{ option.room_type_name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup
+                                .get('room_type_id')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <!-- <input
+                        matInput
+                        placeholder="Room Number"
+                        formControlName="room_no"
+                    /> -->
+                    <input
+                        type="text"
+                        placeholder="Room Number"
+                        aria-label="Number"
+                        matInput
+                        formControlName="room_no"
+                        [matAutocomplete]="room_auto"
+                        (keyup)="applyFilter($event)"
+                    />
+                    <mat-autocomplete #room_auto="matAutocomplete">
+                        <mat-option
+                            *ngFor="let option of RoomOptions"
+                            [value]="option.room_no"
+                        >
+                            {{ option.room_no }}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup.get('room_no').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Room Adult Count"
+                        formControlName="room_adult_count"
+                    />
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup
+                                .get('room_adult_count')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Room child Count"
+                        formControlName="room_child_count"
+                    />
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup
+                                .get('room_child_count')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Kyc Type"
+                        formControlName="kyc_type"
+                    />
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup.get('kyc_type').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Kyc Number"
+                        formControlName="kyc_number"
+                    />
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup
+                                .get('kyc_number')
+                                .hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Kyc proof"
+                        formControlName="kyc_proof"
+                    />
+                    <mat-error
+                        *ngIf="
+                            guestFormGroup.get('kyc_proof').hasError('required')
+                        "
+                        >this field is required!!!</mat-error
+                    >
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary">Submit</button>
+        </form></mat-card
+    >
+</div>
+<ng-template #elseBlock>
+    <div style="text-align: center;">
+        <mat-card
+            ><p>All Guest Added Successfully</p>
+            <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="['/employee/booking']"
+            >
+                Back to booking
+            </button></mat-card
+        >
+    </div>
+</ng-template>
