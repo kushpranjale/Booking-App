@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { ComplaintsService } from '../services/complaints.service';
+import { DepartmentService } from '../../admin-dashboard/services/department.service';
 import {
     FormGroup,
     FormControl,
@@ -7,6 +8,8 @@ import {
     FormGroupDirective,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Complaints } from '../models/complaint-model';
+import { Department } from 'src/app/admin-dashboard/models/department-model';
 
 @Component({
     selector: 'app-complaint',
@@ -15,12 +18,16 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ComplaintComponent implements OnInit {
     complaintGroup: FormGroup;
+    dep_id: number;
+    departments: Department[] = [];
+    complaints: Complaints[] = [];
     comp_name = false;
     message: string;
     status: number;
     constructor(
         private complaintService: ComplaintsService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private departmentService: DepartmentService
     ) {}
 
     ngOnInit() {
@@ -30,6 +37,31 @@ export class ComplaintComponent implements OnInit {
             complaint_status: new FormControl('', [Validators.required]),
             customer_review: new FormControl(''),
         });
+
+        this.departmentService.getAllDepartments();
+        this.departmentService.departmentListner().subscribe(result => {
+            this.departments = result;
+        });
+    }
+
+    // Filter applying for department name
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        console.log(filterValue);
+        const filter = this.departments.filter(p => {
+            if (p.department_name.includes(filterValue)) {
+                this.dep_id = p.department_id;
+                return p.department_name.includes(filterValue);
+            } else {
+                return null;
+            }
+        });
+        this.departments = filter;
+    }
+
+    onchange(id: number) {
+        this.dep_id = id;
+        console.log(this.dep_id);
     }
 
     onChangeValue() {
@@ -44,7 +76,10 @@ export class ComplaintComponent implements OnInit {
         if (this.complaintGroup.invalid) {
             return;
         } else {
-            this.complaintService.addComplaint(this.complaintGroup);
+            this.complaintService.addComplaint(
+                this.dep_id,
+                this.complaintGroup
+            );
             this.snackBar.open('Successfully Added', 'close', {
                 duration: 2000,
             });

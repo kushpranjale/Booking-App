@@ -25,10 +25,10 @@ export class ComplaintsService {
     }
 
     // ADD complaint details
-    addComplaint(formData: FormGroup) {
+    addComplaint(id: number, formData: FormGroup) {
         const complaintData = {
             complaint_id: formData.value.complaint_id,
-            department_id: formData.value.department_id,
+            department_id: id,
             room_no: formData.value.room_no,
             complaint_time: formData.value.complaint_time,
             complaint_status: formData.value.complaint_status,

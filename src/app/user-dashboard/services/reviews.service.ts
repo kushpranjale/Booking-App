@@ -25,12 +25,12 @@ export class ReviewsService {
     }
 
     // ADD review details
-    addReviews(formData: FormGroup) {
+    addReviews(id: number, formData: FormGroup) {
         const reviewData = {
             cust_username: formData.value.cust_username,
             guest_username: formData.value.guest_username,
             review: formData.value.review,
-            department_id: formData.value.department_id,
+            department_id: id,
             rating: formData.value.rating,
         };
         this.http

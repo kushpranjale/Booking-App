@@ -9,17 +9,31 @@
             <!-- Department Id -->
             <mat-form-field>
                 <input
+                    type="text"
+                    placeholder="Department Name"
+                    aria-label="Number"
                     matInput
-                    placeholder="Department ID"
                     formControlName="department_id"
-                    (focus)="onChangeValue()"
+                    [matAutocomplete]="auto"
+                    (keyup)="applyFilter($event)"
                 />
-                <mat-error
+
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option
+                        *ngFor="let department of departments"
+                        [value]="department.department_name"
+                        (click)="onchange(department.department_id)"
+                    >
+                        {{ department.department_name }}
+                    </mat-option>
+                </mat-autocomplete>
+
+                <!-- <mat-error
                     *ngIf="
                         complaintGroup.get('department_id').hasError('required')
                     "
                     >This Field Is Required
-                </mat-error>
+                </mat-error> -->
             </mat-form-field>
 
             <!-- Room No -->
