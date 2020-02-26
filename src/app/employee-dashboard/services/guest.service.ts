@@ -1,10 +1,9 @@
 import { tap } from 'rxjs/operators';
 import { Guest } from './../employee-models/booking-model';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
-import { url } from 'inspector';
 
 @Injectable({
     providedIn: 'root',
@@ -40,7 +39,7 @@ export class GuestService {
             .subscribe();
     }
 
-    getGuest() {
-        return this.http.get(`${this.url}get_guests`);
+    getGuest(): Observable<Guest[]> {
+        return this.http.get<Guest[]>(`${this.url}get_guests`);
     }
 }

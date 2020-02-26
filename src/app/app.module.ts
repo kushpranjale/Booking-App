@@ -84,6 +84,8 @@ import { BookingComponent } from './employee-dashboard/booking/booking.component
 import { ReviewComponent } from './employee-dashboard/review/review.component';
 import { ComplaintComponent } from './user-dashboard/complaint/complaint.component';
 import { AddGuestComponent } from './employee-dashboard/booking/add-guest/add-guest.component';
+import { ShowBookingsComponent } from './employee-dashboard/booking/show-bookings/show-bookings.component';
+import { ShowGuestsComponent } from './employee-dashboard/booking/show-guests/show-guests.component';
 
 @NgModule({
     declarations: [
@@ -125,6 +127,8 @@ import { AddGuestComponent } from './employee-dashboard/booking/add-guest/add-gu
         ComplaintComponent,
         ReviewComponents,
         AddGuestComponent,
+        ShowBookingsComponent,
+        ShowGuestsComponent,
     ],
     entryComponents: [
         DialogOverview,

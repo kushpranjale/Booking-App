@@ -1,3 +1,5 @@
+import { ShowGuestsComponent } from './employee-dashboard/booking/show-guests/show-guests.component';
+import { ShowBookingsComponent } from './employee-dashboard/booking/show-bookings/show-bookings.component';
 import { AddGuestComponent } from './employee-dashboard/booking/add-guest/add-guest.component';
 import { ReviewComponents } from './user-dashboard/review/review.component';
 import { ReviewComponent } from './employee-dashboard/review/review.component';
@@ -57,6 +59,8 @@ const routes: Routes = [
             { path: 'booking', component: BookingComponent },
             { path: 'review', component: ReviewComponent },
             { path: 'add-guest', component: AddGuestComponent },
+            { path: 'bookingData', component: ShowBookingsComponent },
+            { path: 'guestData', component: ShowGuestsComponent },
         ],
     },
     {
